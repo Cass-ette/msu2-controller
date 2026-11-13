@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.venv/
+.venv-mac/
+.venv-build-mac/
+build/
+dist/
+.runtime/
+backups/
+logs/
+validation/
+*.before-mac-check
+*.log
+.DS_Store

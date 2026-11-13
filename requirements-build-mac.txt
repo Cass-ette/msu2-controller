@@ -1,0 +1,2 @@
+# Build-time only. The generated app includes its Python runtime and libraries.
+PyInstaller==6.22.3
