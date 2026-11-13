@@ -285,7 +285,8 @@ class App:
         ttk.Label(controls, text="副文字").grid(row=2, column=0, sticky="w", pady=6)
         ttk.Entry(controls, textvariable=self.subtitle, width=45).grid(row=2, column=1, columnspan=2, sticky="ew", padx=10)
         ttk.Checkbutton(controls, text="实体按键切换",
-                        variable=self.hardware_button).grid(row=3, column=0, sticky="w", pady=6)
+                        variable=self.hardware_button, command=self.schedule_tick).grid(
+                            row=3, column=0, sticky="w", pady=6)
         ttk.Checkbutton(controls, text="上下倒转（180°）",
                         variable=self.upside_down).grid(
                             row=3, column=1, columnspan=2, sticky="w", padx=10, pady=6)
@@ -669,7 +670,7 @@ class App:
     def next_tick_delay(self):
         """Sleep until the next deadline, with a bounded notification check."""
         now = time.monotonic()
-        deadlines = [now + .05]
+        deadlines = [now + (.02 if self.api_enabled.get() else .05)]
         if not self.close_requested and not self.modal:
             if self.display:
                 deadlines.append(getattr(self.display, 'last_activity', now) + 2)
@@ -774,6 +775,7 @@ class App:
             self.notification_inbox.cancel_pending()
             self.dismiss_notification()
             self.status.set('外部通知已关闭。')
+        self.schedule_tick()
 
     def dismiss_notification(self, status='dismissed'):
         if self.active_notification is None:
