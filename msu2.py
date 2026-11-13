@@ -12,12 +12,20 @@ from dataclasses import asdict, dataclass
 
 import serial
 from serial.tools import list_ports
+from PIL import Image, ImageChops
 from standby_format import FRAME_COUNT, FRAME_SIZE
 from asset_layout import IMAGE_BYTES, PAGE_BYTES, slot_for
 
 HELLO = b"\x00MSNCN"
 BANNER = re.compile(rb"\x00MSN([0-9]{2})")
 logger = logging.getLogger(__name__)
+
+_RGB565_RED_HIGH = tuple(value & 0xf8 for value in range(256))
+_RGB565_GREEN_HIGH = tuple(value >> 5 for value in range(256))
+_RGB565_GREEN_LOW = tuple((value & 0x1c) << 3 for value in range(256))
+_RGB565_BLUE_LOW = tuple(value >> 3 for value in range(256))
+_PIXEL_BLOCK = (b''.join(bytes((4, slot)) + b'\xff' * 4 for slot in range(64))
+                + bytes((2, 3, 8, 1, 0, 0)))
 
 
 class DeviceError(RuntimeError):
@@ -91,15 +99,17 @@ def encode_pixels(pixels: bytes) -> bytes:
     """Encode RGB565 bytes into the device's 256-byte staging packets."""
     if not pixels or len(pixels) % 2:
         raise ValueError("RGB565 数据必须包含完整像素")
-    output = bytearray()
-    for offset in range(0, len(pixels), 256):
+    output = bytearray(_PIXEL_BLOCK * ((len(pixels) + 255) // 256))
+    for block, offset in enumerate(range(0, len(pixels), 256)):
         chunk = pixels[offset:offset + 256]
         used = len(chunk)
         chunk = chunk.ljust(256, b"\xff")
-        for slot in range(64):
-            output.extend((4, slot))
-            output.extend(chunk[slot * 4:slot * 4 + 4])
-        output.extend((2, 3, 8, used >> 8, used & 255, 0))
+        start = block * 390
+        # Fill each byte lane in C, retaining all six-byte command boundaries.
+        for lane in range(4):
+            output[start + 2 + lane:start + 384:6] = chunk[lane::4]
+        if used != 256:
+            output[start + 387:start + 389] = bytes((used >> 8, used & 255))
     # Each command 8 commits a block; this firmware does not need command 9.
     return bytes(output)
 
@@ -121,12 +131,12 @@ def encode_flash_page(page: int, data: bytes) -> bytes:
 
 
 def image_bytes(image) -> bytes:
-    output = bytearray()
-    raw = image.convert("RGB").tobytes()
-    for red, green, blue in zip(raw[0::3], raw[1::3], raw[2::3]):
-        rgb565 = ((red >> 3) << 11) | ((green >> 2) << 5) | (blue >> 3)
-        output.extend(struct.pack(">H", rgb565))
-    return bytes(output)
+    """Pack the same big-endian RGB565 using Pillow's native byte operations."""
+    red, green, blue = image.convert("RGB").split()
+    high = ImageChops.add(red.point(_RGB565_RED_HIGH), green.point(_RGB565_GREEN_HIGH))
+    low = ImageChops.add(green.point(_RGB565_GREEN_LOW), blue.point(_RGB565_BLUE_LOW))
+    # LA is only a two-byte interleave here: high byte, then low byte per pixel.
+    return Image.merge("LA", (high, low)).tobytes()
 
 
 class Display:
