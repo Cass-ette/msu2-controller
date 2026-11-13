@@ -85,7 +85,7 @@ python3 -m venv .venv-build-mac
 
 ## 厂商原始资料
 
-墨砺工作室的原版 [使用及开发指南 PDF](third_party/vendor-msu2/使用及开发指南-MSU2系列可编程USB屏幕_20241102224357.pdf) 归档在 [third_party/vendor-msu2](third_party/vendor-msu2/README.md)，保留原文件与 SHA-256，便于核对硬件、原版工具及接口说明。该文档来自厂商，不是本控制器的使用说明。
+墨砺工作室的原版 [Windows 软件](third_party/vendor-msu2/MSU2_MINI_DemoV1.6%281%29.exe) 和 [使用及开发指南 PDF](third_party/vendor-msu2/使用及开发指南-MSU2系列可编程USB屏幕_20241102224357.pdf) 归档在 [third_party/vendor-msu2](third_party/vendor-msu2/README.md)，保留原文件与 SHA-256，便于核对硬件、原版工具及接口说明。厂商软件与本仓库开发的控制器分开维护，文档也描述厂商原始软件。
 
 ## 许可
 
