@@ -83,6 +83,12 @@ python3 -m venv .venv-build-mac
 
 两端协作请遵循 [贡献与 Windows 合并流程](CONTRIBUTING.md)：一个仓库维护共同核心，各系统发布自己的安装产物，通过分支和 PR 合并功能。
 
+## 厂商原始资料
+
+墨砺工作室的原版 [Windows 软件](third_party/vendor-msu2/MSU2_MINI_DemoV1.6%281%29.exe) 和 [使用及开发指南 PDF](third_party/vendor-msu2/使用及开发指南-MSU2系列可编程USB屏幕_20241102224357.pdf) 归档在 [third_party/vendor-msu2](third_party/vendor-msu2/README.md)，保留原文件与 SHA-256，便于核对硬件、原版工具及接口说明。厂商软件与本仓库开发的控制器分开维护，文档也描述厂商原始软件。
+
 ## 许可
 
 本项目采用 [MIT License](LICENSE)。Python、Tcl/Tk、Pillow、pyserial、psutil 和 PyInstaller 的相关许可见 [assets/licenses](assets/licenses)，分别适用于各自组件。
+
+`third_party/vendor-msu2/` 内的厂商原件保留原权利人的版权，不适用本项目的 MIT 许可；归档说明见该目录。
