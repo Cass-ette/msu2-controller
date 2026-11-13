@@ -84,7 +84,7 @@ class MacTests(unittest.TestCase):
             with self.assertRaisesRegex(features.ContentError,"支持主屏幕"):
                 features.capture_desktop((160,80),"整个桌面")
         with patch.object(features.sys,"platform","darwin"), patch.object(features,"screen_capture_access",return_value={'granted':True}), patch.object(features.ImageGrab,"grab",side_effect=OSError("denied")):
-            with self.assertRaisesRegex(features.ContentError,"允许终端或 Python"):
+            with self.assertRaisesRegex(features.ContentError,"无法截取桌面"):
                 features.capture_desktop((160,80))
 
 

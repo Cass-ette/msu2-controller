@@ -13,6 +13,10 @@ class ContentError(RuntimeError):
     """A content-source error that should not disconnect a healthy display."""
 
 
+class ScreenCapturePermissionError(ContentError):
+    """Allow the GUI to offer permission help instead of treating this as USB failure."""
+
+
 class SystemMonitor:
     def __init__(self):
         self.started = False
@@ -59,7 +63,7 @@ def capture_desktop(size, scope="主屏幕", fit="完整显示", background="#10
             if scope != "主屏幕":
                 raise ContentError("Mac 版投屏目前支持主屏幕，请选择主屏幕。")
             if screen_capture_access().get('granted') is False:
-                raise ContentError("投屏需要屏幕录制权限；请在系统设置的隐私与安全性中允许终端或 Python（通过应用启动时允许该应用），然后退出并重新打开。")
+                raise ScreenCapturePermissionError("投屏需要屏幕录制权限。")
             source = ImageGrab.grab()
         else:
             source = ImageGrab.grab()
@@ -74,8 +78,9 @@ def capture_desktop(size, scope="主屏幕", fit="完整显示", background="#10
     except ContentError:
         raise
     except Exception as exc:
-        hint = "；请在隐私与安全性中允许终端或 Python 的屏幕录制，然后重开程序" if sys.platform == "darwin" else ""
-        raise ContentError(f"无法截取桌面{hint}：{exc}") from exc
+        if sys.platform == "darwin" and screen_capture_access().get('granted') is False:
+            raise ScreenCapturePermissionError("投屏需要屏幕录制权限。") from exc
+        raise ContentError(f"无法截取桌面：{exc}") from exc
 
 
 class ButtonDebouncer:

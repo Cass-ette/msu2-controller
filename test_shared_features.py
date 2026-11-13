@@ -246,7 +246,7 @@ class PlatformTests(unittest.TestCase):
 
     def test_denied_recording_permission_does_not_capture_silently(self):
         with patch.object(features.sys,'platform','darwin'), patch.object(features,'screen_capture_access',return_value={'granted':False}), patch.object(features.ImageGrab,'grab') as grab:
-            with self.assertRaisesRegex(features.ContentError,'允许终端或 Python'):
+            with self.assertRaises(features.ScreenCapturePermissionError):
                 features.capture_desktop((160,80))
             grab.assert_not_called()
 

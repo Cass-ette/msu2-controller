@@ -1,0 +1,65 @@
+{
+  "build": "20261113.4",
+  "regression": {
+    "passed": true,
+    "tests": 163,
+    "seconds": 7.371,
+    "new_tests": 11,
+    "scope": "Real Tk; simulated permission decisions and devices; Windows capture path mocked"
+  },
+  "bundle_check": {
+    "started_utc": "2026-11-13T12:54:03.397521+00:00",
+    "frozen": true,
+    "font": [
+      "PingFang SC",
+      "Regular"
+    ],
+    "steps": [
+      {
+        "step": "tk_gui",
+        "version": "8.6.15"
+      },
+      {
+        "step": "all_editor_windows_and_crop",
+        "passed": true
+      },
+      {
+        "step": "capture_permission_window",
+        "passed": true
+      },
+      {
+        "step": "bundled_example",
+        "frames": 36
+      },
+      {
+        "step": "notification_http",
+        "passed": true
+      },
+      {
+        "step": "power",
+        "state": "已充满",
+        "error": ""
+      }
+    ],
+    "flash_written": false,
+    "passed": true
+  },
+  "source_sha256": {
+    "app.py": "738a63c365527c520840669fe3b6aff9221034439123e9d9807867f13d5484ad",
+    "features.py": "6568e6ccf8706e9485934dbaaa69ed69ef7ef78306cb0ba5b8b110d5db7deda9",
+    "platform_support.py": "fe4b8564cb4636ad15e9108f1b015ebb749a472b737f61eb07aceb50f95a1034",
+    "capture_ui.py": "8c0bc00009b0492103accf1cab86d8716fe5eb3bc894573db702489743a6f91c",
+    "validate_bundle.py": "cf6e6a0c3ccc0c63e105a127646ed33ee781a6457329999c49a8faf7dfc0c1d9"
+  },
+  "native_tcc_first_run_verified": false,
+  "actual_settings_page_verified": true,
+  "system_permissions_changed": false,
+  "hardware_display_tested_this_round": false,
+  "dmg": {
+    "name": "MSU2Controller-Mac-arm64-20261113.4.dmg",
+    "bytes": 19908777,
+    "sha256": "f47465a29ce4f4bd2ada8e332bd8db03b5425080bfaa550c089ade2bd6030fdb"
+  },
+  "new_dependencies": [],
+  "actual_settings_page": "录屏与系统录音"
+}

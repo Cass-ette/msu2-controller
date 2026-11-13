@@ -1,5 +1,6 @@
 """Small operating-system boundaries shared by the GUI and diagnostics."""
 import ctypes
+import subprocess
 import sys
 
 
@@ -17,6 +18,31 @@ def screen_capture_access():
     except (OSError, AttributeError) as exc:
         return {'required': True, 'granted': None, 'error': str(exc),
                 'python_executable': sys.executable}
+
+
+def request_screen_capture_access():
+    """Ask macOS on a user-initiated capture; diagnostics remain read-only."""
+    access = screen_capture_access()
+    if not access['required'] or access.get('granted') is True:
+        return access
+    try:
+        core = ctypes.CDLL('/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics')
+        request = core.CGRequestScreenCaptureAccess
+        request.argtypes = []
+        request.restype = ctypes.c_bool
+        return {'required': True, 'granted': bool(request())}
+    except (OSError, AttributeError) as exc:
+        return {'required': True, 'granted': None, 'error': str(exc)}
+
+
+def open_screen_capture_settings():
+    """Open the permission pane; never change a permission on the user's behalf."""
+    if sys.platform != 'darwin':
+        return False
+    subprocess.run(['/usr/bin/open',
+                    'x-apple.systempreferences:com.apple.preference.security?Privacy_ScreenCapture'],
+                   check=True, timeout=5, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
+    return True
 
 
 def connection_failure(exc):
