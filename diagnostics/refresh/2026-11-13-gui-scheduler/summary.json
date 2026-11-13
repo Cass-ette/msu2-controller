@@ -272,7 +272,9 @@
     "updated-simulated-1ms.json": "f22fb85272f427b956bb70f051ca36bf16022d9ffd6d5b3951bdf05887110713",
     "updated-simulated-50ms.json": "a46ec46e482268177f5b252a0fe35671683ab358d7cfc4238d1f769be4799a62",
     "bundle-check.json": "df8682dafca8055e2797c488cbc872e7cc241ea68172c87fca365757b5cfd3e6",
-    "notifications-hardware.json": "67e043c17df4edde1113b670dd4541ef5916f02d2b456c12e4e6b9b527f3f3f8"
+    "notifications-hardware.json": "67e043c17df4edde1113b670dd4541ef5916f02d2b456c12e4e6b9b527f3f3f8",
+    "updated-hardware-60s.json": "a7e855b97a7ba7342345e1d1191579ecac01307e04d275ca7d4bfb4a30149023",
+    "installed-check.json": "528437b5f99b08e6c94b19442f15e7940966414249bde55dcc6cb4d3ed2623e6"
   },
   "regression": {
     "tests": 152,
@@ -282,5 +284,62 @@
   },
   "bundle_build": "20261113.3",
   "dmg_sha256": "ad62341b39dded1cbacab4335854f3e95658400dd3b58405bf7095d3e715ddc2",
-  "dmg_bytes": 18858574
+  "dmg_bytes": 18858574,
+  "supplemental_runs": {
+    "updated-hardware-60s.json": {
+      "evidence_kind": "hardware_tk_scheduler",
+      "started_utc": "2026-11-13T09:40:59.805130+00:00",
+      "metadata": {
+        "source_commit": "a8cf134c7724b3c8b857724eefc35d7749c508a0",
+        "measured_source_dirty": false,
+        "source_sha256": {
+          "msu2.py": "71c19b9fd6d5eee591bd3504532458002da16c0c05a94d1419dae4139b467e55",
+          "app.py": "f828af04043a6dc080c3a69ad0e300d1ea02de43f8d7a2e621663497707ca853"
+        },
+        "python": "3.13.12 | packaged by Anaconda, Inc. | (main, Feb 24 2026, 16:07:20) [Clang 20.1.8 ]",
+        "platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+        "dependencies": {
+          "pyserial": "3.5",
+          "Pillow": "12.3.0",
+          "psutil": "7.2.2"
+        }
+      },
+      "target_fps": 10,
+      "requested_seconds": 60.0,
+      "ui_step_ms": 1,
+      "input": "synthetic RGB moving block through App.render_request",
+      "button_polling": true,
+      "flash_written": false,
+      "passed": true,
+      "measured_seconds": 60.00033558299765,
+      "frames": 591,
+      "completed_fps": 9.849944908766014,
+      "adc_samples": 1152,
+      "preview_updates": 591,
+      "serial_recoveries": 0,
+      "frame_start_interval_ms": {
+        "median": 99.99612509272993,
+        "p95": 101.53287509456277,
+        "p99": 144.67954100109637,
+        "max": 742.5242499448359
+      },
+      "show_duration_ms": {
+        "median": 42.77395806275308,
+        "p95": 51.19941686280072,
+        "p99": 118.1454579345882,
+        "max": 723.1762909796089
+      },
+      "worker_completion_to_ui_ms": {
+        "median": 1.2548330705612898,
+        "p95": 4.711209097877145,
+        "p99": 5.461832974106073,
+        "max": 78.1719998922199
+      }
+    },
+    "installed-check.json": {
+      "passed": true,
+      "bundle_build": "20261113.3",
+      "scope": "Installed home application; Chinese/editor/API/power and two real serial frames"
+    }
+  }
 }
