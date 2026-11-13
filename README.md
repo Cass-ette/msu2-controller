@@ -67,7 +67,9 @@ Mac 安装版将数据存放在应用外部，更新 `.app` 保留数据：
 python -B -m unittest discover -v
 ```
 
-测试包含真实 Tk 事件循环及模拟设备，需可用的图形会话；Linux CI 使用 Xvfb。最新 Mac 完整回归 152 项通过；另完成混合内容传图、真实 GUI 与按键轮询对照、通知恢复及独立应用串口检查。结果和限制见 [验证记录](docs/testing.md) 和 [GUI 调度对照](diagnostics/refresh/2026-11-13-gui-scheduler/README.md)。
+测试包含真实 Tk 事件循环及模拟设备，需可用的图形会话；Linux CI 使用 Xvfb。最新 Mac 完整回归 163 项通过；另完成混合内容传图、真实 GUI 与按键轮询对照、通知恢复及独立应用检查。结果和限制见 [验证记录](docs/testing.md) 和 [GUI 调度对照](diagnostics/refresh/2026-11-13-gui-scheduler/README.md)。
+
+Mac 首次投屏缺少权限时会尝试系统授权，并弹出引导窗口。点击「打开系统设置」直达屏幕录制权限页，开启「MSU2 小屏控制器」后返回点击「已开启，重试」；若 macOS 要求重启应用，按系统提示操作。源码启动时需授权实际运行程序的终端或 Python。说明和验证范围见 [投屏权限引导](docs/capture-permission.md)。
 
 Mac 实时传图保留 60 字节分包，移除原每包 1 ms 人为等待；混合内容单帧含编码 / 传输 / 应答约 50 ms，闪存长写仍保留保守节奏。未实现固件双缓冲，刷新差异仍需与 Windows 实际版本对照。
 

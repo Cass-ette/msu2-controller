@@ -18,6 +18,7 @@ from notifications import NotificationInbox
 from notify_client import NotificationClient
 from platform_support import screen_capture_access
 from power_monitor import read_mac_power
+from capture_ui import CapturePermissionWindow
 
 
 def main():
@@ -71,6 +72,10 @@ def main():
             ui.open_power_window()
             ui.power_window.close()
             report['steps'].append({'step': 'all_editor_windows_and_crop', 'passed': True})
+        # Exercise the bundled permission UI without requesting or changing TCC.
+        ui.capture_permission_window = CapturePermissionWindow(ui, resume_live=False)
+        ui.capture_permission_window.close()
+        report['steps'].append({'step': 'capture_permission_window', 'passed': True})
         demo = normalize(load_gif(Path(__file__).parent / 'examples' / 'offline-demo.gif'))
         assert len(demo) == 36
         report['steps'].append({'step': 'bundled_example', 'frames': len(demo)})

@@ -19,12 +19,14 @@ from tkinter import colorchooser, filedialog, messagebox, ttk
 from PIL import Image, ImageDraw, ImageFont, ImageOps, ImageTk
 
 from msu2 import Display, find_ports, test_image
-from features import ButtonDebouncer, ContentError, SystemMonitor, capture_desktop, format_rate
+from features import (ButtonDebouncer, ContentError, ScreenCapturePermissionError,
+                      SystemMonitor, capture_desktop, format_rate)
 from offline_backup import safe_burn
 from notifications import NotificationInbox
 from power_monitor import PowerMonitor
 from power_graphics import render_power
 from app_paths import data_directory, log_directory
+from platform_support import request_screen_capture_access
 
 MODES = ("文字", "时钟", "电脑状态", "功率与电池", "图片", "投屏", "测试色条")
 DYNAMIC_MODES = ("时钟", "电脑状态", "功率与电池", "投屏")
@@ -229,6 +231,8 @@ class App:
         self.image_framing = None
         self.clock_framing = None
         self.image_editor = None
+        self.capture_permission_window = None
+        self.capture_permission_requested = False
         self.clock_background = None
         self.foreground = "#6ee7b7"
         self.background = "#101824"
@@ -421,18 +425,22 @@ class App:
             self.busy = False
             if error:
                 logging.getLogger('msu2').warning('Operation failed: %s', error)
-                self.status.set(f"操作失败：{error}")
-                self.pending_frame = False
-                if isinstance(error, ContentError):
-                    self.live.set(False)
-                else:
-                    if self.display:
-                        self.display.close()
-                    self.display = None
-                    self.button_detector = None
-                    self.connection.configure(text="连接屏幕")
-                if failed:
+                if isinstance(error, ScreenCapturePermissionError) and failed:
+                    # The originating request checks generation before showing UI.
                     failed(error)
+                else:
+                    self.status.set(f"操作失败：{error}")
+                    self.pending_frame = False
+                    if isinstance(error, ContentError):
+                        self.live.set(False)
+                    else:
+                        if self.display:
+                            self.display.close()
+                        self.display = None
+                        self.button_detector = None
+                        self.connection.configure(text="连接屏幕")
+                    if failed:
+                        failed(error)
             else:
                 recovered = self.sync_recovery()
                 done(value)
@@ -523,6 +531,8 @@ class App:
         self.schedule_tick()
 
     def mode_changed(self):
+        if self.capture_permission_window is not None:
+            self.capture_permission_window.close()
         self.dismiss_notification()
         self.generation += 1
         self.next_frame_at = 0
@@ -580,6 +590,11 @@ class App:
     def request_frame(self, send_to_device):
         if self.busy or self.closing or self.close_requested or self.modal:
             return
+        if self.mode.get() == '投屏' and self.capture_permission_window is not None:
+            self.pending_frame = False
+            self.live.set(False)
+            self.capture_permission_window.window.lift()
+            return
         request = self.frame_request()
         device = self.display if send_to_device else None
         self.pending_frame = False
@@ -617,7 +632,42 @@ class App:
                 else:
                     self.status.set(f"画面已发送并确认通信 · {self.size[0]} × {self.size[1]}")
 
-        self.run(operation, completed)
+        def failed(error):
+            if (isinstance(error, ScreenCapturePermissionError)
+                    and request['generation'] == self.generation
+                    and self.mode.get() == '投屏' and not self.close_requested):
+                was_live = self.live.get()
+                self.pending_frame = False
+                self.live.set(False)
+                self.show_capture_permission(was_live)
+
+        self.run(operation, completed, failed)
+
+    def show_capture_permission(self, resume_live):
+        self.status.set('投屏已暂停：需要允许屏幕录制，可在弹窗中打开系统设置。')
+        if self.capture_permission_window is not None:
+            self.capture_permission_window.resume_live |= resume_live
+            self.capture_permission_window.window.lift()
+            return
+        if not self.capture_permission_requested:
+            self.capture_permission_requested = True
+            access = request_screen_capture_access()
+            if self.close_requested or self.mode.get() != '投屏':
+                return
+            if access.get('granted') is True:
+                self.resume_screen_capture(resume_live)
+                return
+        from capture_ui import CapturePermissionWindow
+        self.capture_permission_window = CapturePermissionWindow(self, resume_live)
+
+    def resume_screen_capture(self, resume_live):
+        if self.closing or self.close_requested or self.mode.get() != '投屏':
+            return
+        self.live.set(resume_live)
+        self.pending_frame = True
+        self.next_frame_at = 0
+        self.status.set('正在重试投屏…')
+        self.schedule_tick()
 
     def send(self):
         self.dismiss_notification()
@@ -921,6 +971,8 @@ class App:
         self.dismiss_notification()
         if self.image_editor is not None:
             self.image_editor.close()
+        if self.capture_permission_window is not None:
+            self.capture_permission_window.close()
         if self.power_window is not None:
             self.power_window.close()
         self.power_monitor.close()
