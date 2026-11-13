@@ -1,0 +1,176 @@
+{
+  "evidence_kind": "original_hardware_aggregate_output",
+  "date": "2026-11-13",
+  "entry": "PowerShell stdin Python (-B -), direct msu2.Display.show; no app GUI",
+  "source_commit": null,
+  "source_sha256": {
+    "msu2.py": "2990752e4a8a0e38d81b66d4b0d3604353b92e27604032f9046742fbb76e10e7",
+    "app.py": "de14631e52ed8a8f505c558bf937b174ce8639fb3f65e53f7fb0451c5c228f56"
+  },
+  "source_hash_provenance": "Computed during packaging from unchanged local Windows source files; not captured by original timing script.",
+  "environment": {
+    "python": "3.11.9",
+    "pyserial": "3.5",
+    "Pillow": "12.3.0",
+    "psutil": "7.2.2",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "provenance": "Verified during packaging in the same existing virtual environment; original stdout did not include versions."
+  },
+  "device": {
+    "protocol": "01",
+    "width": 160,
+    "height": 80
+  },
+  "percentile_rule": "sorted_values[int((n - 1) * p)] for p=.95,.99",
+  "serial_read_timeout_seconds": 0.1,
+  "per_frame_data_retained": false,
+  "per_call_lengths_retained": false,
+  "patterns": {
+    "fixed": {
+      "frames": 120,
+      "target_fps": 10,
+      "metrics_ms": {
+        "generate": {
+          "median": 0.081,
+          "p95": 0.156,
+          "p99": 0.163,
+          "max": 0.246
+        },
+        "rgb565": {
+          "median": 1.97,
+          "p95": 2.452,
+          "p99": 2.707,
+          "max": 3.995
+        },
+        "encode_packets": {
+          "median": 1.086,
+          "p95": 1.209,
+          "p99": 1.294,
+          "max": 1.447
+        },
+        "write_calls": {
+          "median": 42.422,
+          "p95": 42.871,
+          "p99": 43.008,
+          "max": 43.225
+        },
+        "all_serial_reads": {
+          "median": 0.411,
+          "p95": 0.527,
+          "p99": 0.62,
+          "max": 0.659
+        },
+        "pre_register_reads": {
+          "median": 0.116,
+          "p95": 0.176,
+          "p99": 0.231,
+          "max": 0.327
+        },
+        "display_ack_reads": {
+          "median": 0.171,
+          "p95": 0.232,
+          "p99": 0.261,
+          "max": 0.39
+        },
+        "post_register_reads": {
+          "median": 0.118,
+          "p95": 0.172,
+          "p99": 0.207,
+          "max": 0.254
+        },
+        "total": {
+          "median": 46.167,
+          "p95": 46.966,
+          "p99": 47.14,
+          "max": 48.697
+        },
+        "start_interval_ms": {
+          "median": 100.008,
+          "p95": 100.328,
+          "p99": 100.378,
+          "max": 100.485
+        }
+      },
+      "protocol_write_call_counts": [
+        8
+      ],
+      "serial_read_call_counts": [
+        6
+      ]
+    },
+    "moving": {
+      "frames": 120,
+      "target_fps": 10,
+      "metrics_ms": {
+        "generate": {
+          "median": 0.077,
+          "p95": 0.16,
+          "p99": 0.167,
+          "max": 0.217
+        },
+        "rgb565": {
+          "median": 1.949,
+          "p95": 2.378,
+          "p99": 2.516,
+          "max": 2.878
+        },
+        "encode_packets": {
+          "median": 1.084,
+          "p95": 1.162,
+          "p99": 1.361,
+          "max": 2.016
+        },
+        "write_calls": {
+          "median": 42.45,
+          "p95": 42.856,
+          "p99": 43.007,
+          "max": 43.072
+        },
+        "all_serial_reads": {
+          "median": 0.415,
+          "p95": 0.535,
+          "p99": 0.575,
+          "max": 0.593
+        },
+        "pre_register_reads": {
+          "median": 0.112,
+          "p95": 0.178,
+          "p99": 0.236,
+          "max": 0.268
+        },
+        "display_ack_reads": {
+          "median": 0.172,
+          "p95": 0.249,
+          "p99": 0.285,
+          "max": 0.295
+        },
+        "post_register_reads": {
+          "median": 0.118,
+          "p95": 0.177,
+          "p99": 0.189,
+          "max": 0.227
+        },
+        "total": {
+          "median": 46.137,
+          "p95": 46.787,
+          "p99": 46.996,
+          "max": 47.377
+        },
+        "start_interval_ms": {
+          "median": 99.997,
+          "p95": 100.453,
+          "p99": 100.495,
+          "max": 100.685
+        }
+      },
+      "protocol_write_call_counts": [
+        8
+      ],
+      "serial_read_call_counts": [
+        6
+      ]
+    }
+  },
+  "comparison_main_commit": "d354cba6d5509414ca66a773a053f482c73c16e0",
+  "original_python_body_sha256": "1c2ea3887002cbe410973d40bf07aab484055656b5567da4b9a0e31613b95aa2"
+}
