@@ -1,5 +1,7 @@
 # Mac 首发验证记录
 
+GUI 修复构建 `20261113.3`：最终 152 项回归通过，真实 GUI 的旧/新实机对照、通知恢复和独立应用检查通过。完整数据与限制见 [GUI 证据](../diagnostics/refresh/2026-11-13-gui-scheduler/README.md)。
+
 后续像素处理优化构建 `20261113.2` 已完成：146 项回归通过，另有旧/新各 240 帧实机对照和打包版两帧发送。见 [完整证据](../diagnostics/refresh/2026-11-13-native-pixels/README.md)。下文为首发构建的历史记录。
 
 日期：2026-11-13。Apple 芯片、macOS 27.2、Python 3.13.12。设备为 MSU2 MINI、160×80、协议 01、VID:PID `1A86:FE0C`。

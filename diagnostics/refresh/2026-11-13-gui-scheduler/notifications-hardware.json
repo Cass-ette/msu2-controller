@@ -1,0 +1,43 @@
+{
+  "started_utc": "2026-11-13T09:25:30.447004+00:00",
+  "steps": [
+    {
+      "step": "connected",
+      "ok": true,
+      "size": [
+        160,
+        80
+      ]
+    },
+    {
+      "step": "clients_submitted",
+      "ok": true,
+      "first_status": "queued",
+      "second_status": "queued"
+    },
+    {
+      "step": "notification_showing",
+      "ok": true,
+      "source": "应用 A",
+      "image_sha256": "9069dbfc64c0fc087772c5bcf9a7e16e7752edc274ca5e950fa64ba117da72b8"
+    },
+    {
+      "step": "notification_showing",
+      "ok": true,
+      "source": "应用 B",
+      "image_sha256": "6b369524d557671ccfef25b272f52bb7eb261256031367b55e9851bbec29002d"
+    },
+    {
+      "step": "original_restored",
+      "ok": true,
+      "acknowledged_frames": 3,
+      "sha256": "54d6ff5dfb58569113199684767184f46f511906156233bde068e7b8bde76613",
+      "settings_preserved": true
+    },
+    {
+      "step": "finished",
+      "ok": true,
+      "flash_written": false
+    }
+  ]
+}
