@@ -9,6 +9,7 @@ from queue import Empty, Queue
 from statistics import median
 import logging
 from logging.handlers import RotatingFileHandler
+import math
 import sys
 import time
 import tkinter as tk
@@ -205,6 +206,8 @@ class App:
         self.pending_frame = False
         self.next_frame_at = 0
         self.next_button_at = 0
+        self._tick_after = None
+        self._poll_after = None
         self.button_detector = None
         self.seen_recovery_count = 0
         self.frame_cache = {}
@@ -309,7 +312,8 @@ class App:
         buttons.pack(fill="x", pady=(16, 0))
         ttk.Button(buttons, text="文字颜色", command=lambda: self.choose_color("foreground")).pack(side="left")
         ttk.Button(buttons, text="背景颜色", command=lambda: self.choose_color("background")).pack(side="left", padx=8)
-        ttk.Checkbutton(buttons, text="实时更新", variable=self.live).pack(side="left", padx=8)
+        ttk.Checkbutton(buttons, text="实时更新", variable=self.live,
+                        command=self.live_changed).pack(side="left", padx=8)
         ttk.Button(buttons, text="显示到屏幕", command=self.send).pack(side="right")
         offline = ttk.Frame(body)
         offline.pack(fill="x", pady=(12, 0))
@@ -324,8 +328,8 @@ class App:
             variable.trace_add("write", lambda *args: self.content_changed())
         self.refresh()
         self.update_preview()
-        root.after(10, self.poll)
-        root.after(20, self.tick)
+        self.schedule_poll(10)
+        self.schedule_tick(20)
 
     def refresh(self):
         ports = [item.device for item in find_ports()]
@@ -379,9 +383,32 @@ class App:
             except Exception as exc:
                 self.results.put((done, None, exc, failed))
         self.executor.submit(worker)
+        self.schedule_poll(1)
         return True
 
+    def _schedule(self, attribute, delay_ms, callback):
+        if self.closing:
+            setattr(self, attribute, None)
+            return
+        previous = getattr(self, attribute, None)
+        if previous is not None:
+            self.root.after_cancel(previous)
+        setattr(self, attribute, None)
+        if not self.closing:
+            setattr(self, attribute, self.root.after(max(1, math.ceil(delay_ms)), callback))
+
+    def schedule_poll(self, delay_ms):
+        self._schedule('_poll_after', delay_ms, self.poll)
+
+    def schedule_tick(self, delay_ms=1):
+        self._schedule('_tick_after', delay_ms, self.tick)
+
     def poll(self):
+        if self.closing:
+            return
+        if self._poll_after is not None:
+            self.root.after_cancel(self._poll_after)
+            self._poll_after = None
         self.notification_inbox.set_connected(self.display is not None and not self.close_requested)
         while True:
             try:
@@ -410,10 +437,13 @@ class App:
                 done(value)
                 if recovered:
                     self.status.set('设备会话已自动恢复，正在重新发送当前画面…')
+            # Dispatch ready work on the next Tk turn instead of waiting for a
+            # second periodic timer. Keep just one scheduler timer alive.
+            self.schedule_tick()
         except Empty:
             pass
         if not self.closing:
-            self.root.after(10, self.poll)
+            self.schedule_poll(5 if self.busy else 50)
 
     def sync_recovery(self):
         count = getattr(self.display, 'recovery_count', 0)
@@ -483,6 +513,13 @@ class App:
         if self.mode.get() in DYNAMIC_MODES:
             self.pending_frame = True
             self.next_frame_at = 0
+            self.schedule_tick()
+
+    def live_changed(self):
+        if self.live.get() and self.mode.get() in DYNAMIC_MODES:
+            self.next_frame_at = 0
+            self.pending_frame = True
+        self.schedule_tick()
 
     def mode_changed(self):
         self.dismiss_notification()
@@ -494,6 +531,7 @@ class App:
         else:
             self.screen_options.grid_remove()
         self.update_preview()
+        self.schedule_tick()
 
     def next_mode(self):
         modes = [mode for mode in MODES if mode != "图片" or self.image_path]
@@ -545,7 +583,16 @@ class App:
         device = self.display if send_to_device else None
         self.pending_frame = False
         interval = 1 / request["fps"] if request["mode"] == "投屏" else 1.0
-        self.next_frame_at = time.monotonic() + interval
+        now = time.monotonic()
+        deadline = self.next_frame_at
+        if deadline <= 0 or deadline > now:
+            deadline = now
+        # Retain the cadence when dispatch is late, skipping missed slots.
+        # At most one current frame is submitted; there is no catch-up queue.
+        missed = max(0, math.floor((now - deadline) / interval))
+        self.next_frame_at = deadline + (missed + 1) * interval
+        if self.next_frame_at <= now:
+            self.next_frame_at += interval
 
         def operation():
             frame = self.render_request(request)
@@ -582,29 +629,63 @@ class App:
         self.request_frame(send_to_device=True)
 
     def tick(self):
+        if self.closing:
+            return
+        if self._tick_after is not None:
+            self.root.after_cancel(self._tick_after)
+            self._tick_after = None
         if not self.closing and not self.close_requested and not self.modal and not self.busy:
             now = time.monotonic()
             editor_open = (self.animation_editor is not None or self.asset_editor is not None
                            or self.image_editor is not None)
-            if (self.display and now - getattr(self.display, 'last_activity', now) >= 2):
-                device = self.display
-                self.run(lambda: device.live_operation(device.ping), lambda _: None)
-            elif editor_open:
-                pass
-            elif (self.display and self.hardware_button.get()
-                    and self.button_detector is not None and now >= self.next_button_at):
-                device = self.display
-                self.next_button_at = now + 0.03
-                self.run(lambda: (device.live_operation(lambda: device.read_adc(9)), time.monotonic()), self.button_polled)
-            elif self.advance_notifications(now):
-                pass
-            elif self.pending_frame:
-                self.request_frame(send_to_device=bool(self.display))
-            elif (self.mode.get() in DYNAMIC_MODES and self.live.get()
-                  and now >= self.next_frame_at):
-                self.request_frame(send_to_device=bool(self.display))
-        if not self.closing:
-            self.root.after(20, self.tick)
+            heartbeat_due = (self.display
+                             and now - getattr(self.display, 'last_activity', now) >= 2)
+            if editor_open:
+                if heartbeat_due:
+                    device = self.display
+                    self.run(lambda: device.live_operation(device.ping), lambda _: None)
+            else:
+                notifying = self.advance_notifications(now)
+                button_due = (self.display and self.hardware_button.get()
+                              and self.button_detector is not None and now >= self.next_button_at)
+                frame_due = (not notifying and (self.pending_frame or (
+                    self.mode.get() in DYNAMIC_MODES and self.live.get()
+                    and now >= self.next_frame_at)))
+                if self.busy:
+                    pass
+                elif frame_due and (self.pending_frame or not button_due
+                                    or self.next_frame_at <= self.next_button_at):
+                    self.request_frame(send_to_device=bool(self.display))
+                elif button_due:
+                    device = self.display
+                    self.next_button_at = now + 0.03
+                    self.run(lambda: (device.live_operation(lambda: device.read_adc(9)), time.monotonic()), self.button_polled)
+                elif heartbeat_due:
+                    device = self.display
+                    self.run(lambda: device.live_operation(device.ping), lambda _: None)
+        if not self.closing and not self.busy:
+            self.schedule_tick(self.next_tick_delay())
+
+    def next_tick_delay(self):
+        """Sleep until the next deadline, with a bounded notification check."""
+        now = time.monotonic()
+        deadlines = [now + .05]
+        if not self.close_requested and not self.modal:
+            if self.display:
+                deadlines.append(getattr(self.display, 'last_activity', now) + 2)
+            editor_open = (self.animation_editor is not None or self.asset_editor is not None
+                           or self.image_editor is not None)
+            if not editor_open:
+                if self.display and self.hardware_button.get() and self.button_detector is not None:
+                    deadlines.append(self.next_button_at)
+                if self.active_notification is not None:
+                    if self.notification_until is not None:
+                        deadlines.append(self.notification_until)
+                elif self.pending_frame:
+                    deadlines.append(now)
+                elif self.mode.get() in DYNAMIC_MODES and self.live.get():
+                    deadlines.append(self.next_frame_at)
+        return max(1, math.ceil((min(deadlines) - now) * 1000))
 
     def open_power_window(self):
         if self.close_requested:
@@ -723,16 +804,25 @@ class App:
         device, size = self.display, self.size
         upside_down = self.upside_down.get()
         was_live = self.live.get()
+        generation = self.generation
         self.pending_frame = False
+        def current():
+            return (not self.close_requested and generation == self.generation
+                    and self.display is device and self.active_notification is not None
+                    and self.active_notification[0] == identifier)
         def operation():
+            if not current():
+                return None
             try:
                 frame = render_notification(size, notification)
             except Exception as exc:
                 raise ContentError(f'通知画面生成失败：{exc}') from exc
+            if not current():
+                return None
             device.live_operation(lambda: device.show(self.orient_for_screen(frame, upside_down)))
             return frame
         def completed(frame):
-            if self.active_notification is None or self.active_notification[0] != identifier:
+            if frame is None or not current():
                 return
             self.notification_frame = frame
             if self.notification_until is None:

@@ -55,7 +55,7 @@ def main():
     subprocess.run(['/usr/bin/codesign', '--verify', '--deep', '--strict', str(bundle)], check=True)
     if args.app_only:
         return
-    dmg = output / 'MSU2Controller-Mac-arm64-20261113.2.dmg'
+    dmg = output / 'MSU2Controller-Mac-arm64-20261113.3.dmg'
     with tempfile.TemporaryDirectory(prefix='msu2-dmg-') as temporary:
         stage = Path(temporary)
         shutil.copytree(bundle, stage / APP_NAME, symlinks=True)
