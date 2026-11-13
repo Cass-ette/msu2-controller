@@ -1,8 +1,14 @@
 # Windows 刷新实测与 Mac 对照（2026-11-13）
 
+后续共享 [GUI 调度修复](2026-11-13-gui-scheduler/README.md) 已完成：同设备、同传输核心，经过真实 Tk、按键轮询和预览，目标 10 FPS 下旧版约 8.1 FPS、新版约 10.0 FPS；另有界面繁忙模拟及通知恢复实测。
+
+后续共享 RGB565 / 命令编码优化已完成，见 [优化对照与完整数据](2026-11-13-native-pixels/README.md)，其中明确区分准备耗时、整帧通信耗时及残余长延迟。
+
+Mac 已按相同计时循环完成三轮 720 帧实机测试及两帧调用跟踪。见 [Mac 原始证据](2026-11-13-mac/README.md) 和 [跨平台对照](../../docs/refresh-comparison.md)。单帧中位约 44–50 ms，固定阶段的偶发长耗时完整保留。以下 Windows 原统计及补采范围不变。
+
 本说明整理已完成的 Windows 实机测试。固定图和移动方块各 120 帧，目标 10 FPS，生成到通信检查完成的中位数分别为 **46.167 ms / 46.137 ms**。这些数字测的是主机通信路径，**通信完成不等于 LCD 刷新完成**。主机函数跟踪不等于 USB 总线抓包；没有据此证明双缓冲、整屏原子换帧或固件扫描方式。
 
-本次 PR 只增加诊断脚本、测试和报告。没有修改正式协议、分包、刷新策略或固件，也没有写入闪存。现有 Windows 工程和未完成的合并副本均保留，PR 从最新 main 的独立克隆建立。
+原 Windows 诊断 PR #1 只增加诊断脚本、测试和报告，没有修改正式协议、分包、刷新策略或固件，也没有写入闪存。原 Windows 工程和未完成的合并副本均保留，该 PR 从当时最新 main 的独立克隆建立。后续生产代码改动与验证见上方链接。
 
 ## 文件、证据与版本
 
@@ -84,7 +90,7 @@ W1/W2 是 show 内额外的发送前尺寸检查；W7/W8 是像素发送后的�
 
 - 原 Windows [show:239、keep_alive:183 的摘录](2026-11-13-windows/windows-source-excerpts.md)在配置显示前强制读取宽、高。仓库 [main show:305](https://github.com/Cass-ette/msu2-controller/blob/d354cba6d5509414ca66a773a053f482c73c16e0/msu2.py#L305)没有这一调用。删去表中 W1/R1、W2/R2，剩下恰好 6 写/4 读。本 PR **没有进行这样的删除**。
 - 原脚本的 writes 数的是 _write()，而 reads 数的是 serial.read，层级不一致。在两帧 Windows 补采中，8 条 _write 实际对应 8 次 serial.write；在仓库 main 补采中是 6 条 _write 对应 6 次 serial.write、4 次 serial.read。后者仍在 Windows 主机上运行，证明 8/6 与 6/4 的差别不能简单归为操作系统分包。
-- main 的 [_write:151](https://github.com/Cass-ette/msu2-controller/blob/d354cba6d5509414ca66a773a053f482c73c16e0/msu2.py#L151)只在 Darwin 对大载荷使用最多 60 字节写入；show 设置 _display_payload=True，使实时像素分包省去旧的 1 ms 等待。39,000 / 60 = **650** 次 serial.write；加上剩余 5 条短协议写入，完整应答、无短写时整帧为 **655 次底层 serial.write**，但仍为 **6 次 _write**。这是源码计算/用户提供的 Mac 模型，此 PR 没有新增 Mac 实机跟踪。
+- main 的 [_write:151](https://github.com/Cass-ette/msu2-controller/blob/d354cba6d5509414ca66a773a053f482c73c16e0/msu2.py#L151)只在 Darwin 对大载荷使用最多 60 字节写入；show 设置 _display_payload=True，使实时像素分包省去旧的 1 ms 等待。39,000 / 60 = **650** 次 serial.write；加上剩余 5 条短协议写入，完整应答、无短写时整帧为 **655 次底层 serial.write**，但仍为 **6 次 _write**。这一源码计算现已由另行补充的 [Mac 两帧实机跟踪](2026-11-13-mac/host-calls.json)验证；不属于原 Windows 240 帧记录。
 - _read_exact() 可能多次读到部分数据；Windows _write() 也会继续发送短写余量，所以底层调用次数不等于协议命令数。main 的 [_display_ack:186](https://github.com/Cass-ette/msu2-controller/blob/d354cba6d5509414ca66a773a053f482c73c16e0/msu2.py#L186)比旧 Windows 多了启动标识识别及应答后缀分段读取，异常或短读时调用数可增加。补采记录包含请求长度和实际返回长度，诊断测试还以假串口验证了这一统计区别；假串口测试不是硬件证据。
 - GUI 在显示调用之外还能进行独立保活、ADC 和通知调度；本次直接调用 show 排除了这些操作。抓整个进程或 USB 总线时应先统一范围，不能拿整个 GUI 任务的计数与这里单帧计数直接比较。
 

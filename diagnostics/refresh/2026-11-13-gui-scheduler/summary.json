@@ -1,0 +1,345 @@
+{
+  "baseline_commit": "1b801e7dc932fc82fece42ba85e83cd2d4481213",
+  "updated_commit": "1f21840bc1c989b9b575b9efda6b983a64713428",
+  "scope": "Real Tk, App.request_frame, single worker, preview and ADC polling; synthetic RGB input. Hardware evidence uses the connected MSU2; simulated files use timed fake I/O.",
+  "flash_written": false,
+  "run_order": "Baseline before updated for each condition; host background load not controlled.",
+  "results": {
+    "baseline-hardware.json": {
+      "evidence_kind": "hardware_tk_scheduler",
+      "passed": true,
+      "frames": 97,
+      "adc_samples": 192,
+      "preview_updates": 97,
+      "measured_seconds": 12.009183791000396,
+      "completed_fps": 8.077151760529402,
+      "frame_start_interval_ms": {
+        "median": 124.35641651973128,
+        "p95": 126.47887482307851,
+        "p99": 127.63541610911489,
+        "max": 128.81725002080202
+      },
+      "show_duration_ms": {
+        "median": 43.73174998909235,
+        "p95": 51.001583924517035,
+        "p99": 52.89329192601144,
+        "max": 53.17249987274408
+      },
+      "worker_completion_to_ui_ms": {
+        "median": 5.924917059019208,
+        "p95": 10.583541821688414,
+        "p99": 11.190125020220876,
+        "max": 11.92858419381082
+      },
+      "serial_recoveries": 0,
+      "metadata": {
+        "source_commit": null,
+        "measured_source_dirty": null,
+        "source_sha256": {
+          "msu2.py": "71c19b9fd6d5eee591bd3504532458002da16c0c05a94d1419dae4139b467e55",
+          "app.py": "266f42a54549bc50d3b362f8a16d256dcc8a4948bca7eb4d6467760a87fd7a41"
+        },
+        "python": "3.13.12 | packaged by Anaconda, Inc. | (main, Feb 24 2026, 16:07:20) [Clang 20.1.8 ]",
+        "platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+        "dependencies": {
+          "pyserial": "3.5",
+          "Pillow": "12.3.0",
+          "psutil": "7.2.2"
+        }
+      }
+    },
+    "baseline-simulated-1ms.json": {
+      "evidence_kind": "simulated_io_tk_scheduler",
+      "passed": true,
+      "frames": 48,
+      "adc_samples": 94,
+      "preview_updates": 48,
+      "measured_seconds": 6.001414291094989,
+      "completed_fps": 7.998114722928444,
+      "frame_start_interval_ms": {
+        "median": 124.07070794142783,
+        "p95": 126.41941593028605,
+        "p99": 127.64658289961517,
+        "max": 195.87225001305342
+      },
+      "show_duration_ms": {
+        "median": 47.760333516635,
+        "p95": 50.00316700898111,
+        "p99": 50.04779202863574,
+        "max": 51.90370790660381
+      },
+      "worker_completion_to_ui_ms": {
+        "median": 5.4681869223713875,
+        "p95": 9.840416954830289,
+        "p99": 10.295167099684477,
+        "max": 10.86074998602271
+      },
+      "serial_recoveries": 0,
+      "metadata": {
+        "source_commit": null,
+        "measured_source_dirty": null,
+        "source_sha256": {
+          "msu2.py": "71c19b9fd6d5eee591bd3504532458002da16c0c05a94d1419dae4139b467e55",
+          "app.py": "266f42a54549bc50d3b362f8a16d256dcc8a4948bca7eb4d6467760a87fd7a41"
+        },
+        "python": "3.13.12 | packaged by Anaconda, Inc. | (main, Feb 24 2026, 16:07:20) [Clang 20.1.8 ]",
+        "platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+        "dependencies": {
+          "pyserial": "3.5",
+          "Pillow": "12.3.0",
+          "psutil": "7.2.2"
+        }
+      }
+    },
+    "baseline-simulated-50ms.json": {
+      "evidence_kind": "simulated_io_tk_scheduler",
+      "passed": true,
+      "frames": 2,
+      "adc_samples": 101,
+      "preview_updates": 2,
+      "measured_seconds": 6.0508382089901716,
+      "completed_fps": 0.33053271809985835,
+      "frame_start_interval_ms": {
+        "median": 3622.805166989565,
+        "p95": 3622.805166989565,
+        "p99": 3622.805166989565,
+        "max": 3622.805166989565
+      },
+      "show_duration_ms": {
+        "median": 47.627062536776066,
+        "p95": 45.445708092302084,
+        "p99": 45.445708092302084,
+        "max": 49.80841698125005
+      },
+      "worker_completion_to_ui_ms": {
+        "median": 48.76720788888633,
+        "p95": 49.226999981328845,
+        "p99": 52.984500071033835,
+        "max": 553.6557079758495
+      },
+      "serial_recoveries": 0,
+      "metadata": {
+        "source_commit": null,
+        "measured_source_dirty": null,
+        "source_sha256": {
+          "msu2.py": "71c19b9fd6d5eee591bd3504532458002da16c0c05a94d1419dae4139b467e55",
+          "app.py": "266f42a54549bc50d3b362f8a16d256dcc8a4948bca7eb4d6467760a87fd7a41"
+        },
+        "python": "3.13.12 | packaged by Anaconda, Inc. | (main, Feb 24 2026, 16:07:20) [Clang 20.1.8 ]",
+        "platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+        "dependencies": {
+          "pyserial": "3.5",
+          "Pillow": "12.3.0",
+          "psutil": "7.2.2"
+        }
+      }
+    },
+    "updated-hardware.json": {
+      "evidence_kind": "hardware_tk_scheduler",
+      "passed": true,
+      "frames": 120,
+      "adc_samples": 238,
+      "preview_updates": 120,
+      "measured_seconds": 12.000803167000413,
+      "completed_fps": 9.999330738960355,
+      "frame_start_interval_ms": {
+        "median": 100.03062500618398,
+        "p95": 101.66466701775789,
+        "p99": 102.22616698592901,
+        "max": 104.4214591383934
+      },
+      "show_duration_ms": {
+        "median": 44.278479530476034,
+        "p95": 50.993625074625015,
+        "p99": 57.33637511730194,
+        "max": 71.84812519699335
+      },
+      "worker_completion_to_ui_ms": {
+        "median": 1.3082914520055056,
+        "p95": 4.756041802465916,
+        "p99": 5.763915833085775,
+        "max": 6.762458942830563
+      },
+      "serial_recoveries": 0,
+      "metadata": {
+        "source_commit": "1f21840bc1c989b9b575b9efda6b983a64713428",
+        "measured_source_dirty": false,
+        "source_sha256": {
+          "msu2.py": "71c19b9fd6d5eee591bd3504532458002da16c0c05a94d1419dae4139b467e55",
+          "app.py": "f828af04043a6dc080c3a69ad0e300d1ea02de43f8d7a2e621663497707ca853"
+        },
+        "python": "3.13.12 | packaged by Anaconda, Inc. | (main, Feb 24 2026, 16:07:20) [Clang 20.1.8 ]",
+        "platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+        "dependencies": {
+          "pyserial": "3.5",
+          "Pillow": "12.3.0",
+          "psutil": "7.2.2"
+        }
+      }
+    },
+    "updated-simulated-1ms.json": {
+      "evidence_kind": "simulated_io_tk_scheduler",
+      "passed": true,
+      "frames": 60,
+      "adc_samples": 117,
+      "preview_updates": 60,
+      "measured_seconds": 6.000182375079021,
+      "completed_fps": 9.999696050773759,
+      "frame_start_interval_ms": {
+        "median": 100.26466706767678,
+        "p95": 103.90408406965435,
+        "p99": 104.48762495070696,
+        "max": 106.73587489873171
+      },
+      "show_duration_ms": {
+        "median": 48.030917067080736,
+        "p95": 50.014291889965534,
+        "p99": 50.01825001090765,
+        "max": 53.68087510578334
+      },
+      "worker_completion_to_ui_ms": {
+        "median": 4.6012080274522305,
+        "p95": 5.499999970197678,
+        "p99": 5.880167009308934,
+        "max": 6.247540935873985
+      },
+      "serial_recoveries": 0,
+      "metadata": {
+        "source_commit": "1f21840bc1c989b9b575b9efda6b983a64713428",
+        "measured_source_dirty": false,
+        "source_sha256": {
+          "msu2.py": "71c19b9fd6d5eee591bd3504532458002da16c0c05a94d1419dae4139b467e55",
+          "app.py": "f828af04043a6dc080c3a69ad0e300d1ea02de43f8d7a2e621663497707ca853"
+        },
+        "python": "3.13.12 | packaged by Anaconda, Inc. | (main, Feb 24 2026, 16:07:20) [Clang 20.1.8 ]",
+        "platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+        "dependencies": {
+          "pyserial": "3.5",
+          "Pillow": "12.3.0",
+          "psutil": "7.2.2"
+        }
+      }
+    },
+    "updated-simulated-50ms.json": {
+      "evidence_kind": "simulated_io_tk_scheduler",
+      "passed": true,
+      "frames": 30,
+      "adc_samples": 29,
+      "preview_updates": 30,
+      "measured_seconds": 6.023445624858141,
+      "completed_fps": 4.980538028963536,
+      "frame_start_interval_ms": {
+        "median": 208.34150002337992,
+        "p95": 212.5333750154823,
+        "p99": 214.38066707924008,
+        "max": 261.83774997480214
+      },
+      "show_duration_ms": {
+        "median": 49.139708513394,
+        "p95": 50.06754188798368,
+        "p99": 50.10966584086418,
+        "max": 53.29612479545176
+      },
+      "worker_completion_to_ui_ms": {
+        "median": 47.28504200465977,
+        "p95": 49.547750037163496,
+        "p99": 50.892499973997474,
+        "max": 52.637457847595215
+      },
+      "serial_recoveries": 0,
+      "metadata": {
+        "source_commit": "1f21840bc1c989b9b575b9efda6b983a64713428",
+        "measured_source_dirty": false,
+        "source_sha256": {
+          "msu2.py": "71c19b9fd6d5eee591bd3504532458002da16c0c05a94d1419dae4139b467e55",
+          "app.py": "f828af04043a6dc080c3a69ad0e300d1ea02de43f8d7a2e621663497707ca853"
+        },
+        "python": "3.13.12 | packaged by Anaconda, Inc. | (main, Feb 24 2026, 16:07:20) [Clang 20.1.8 ]",
+        "platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+        "dependencies": {
+          "pyserial": "3.5",
+          "Pillow": "12.3.0",
+          "psutil": "7.2.2"
+        }
+      }
+    }
+  },
+  "sha256": {
+    "baseline-hardware.json": "caec13107bb29d57fff4111ac4d9f001c9c5798b253820d580bd1f9b0ab13a67",
+    "baseline-simulated-1ms.json": "634c2e91f99cdde9c2f4575fc616e8d1496dcad527f80edbc6daf1312fef5ce5",
+    "baseline-simulated-50ms.json": "b521747e06c9a2f2c2d8762c7074f83ffe0032ca34922c85b2bce1769fdf33e0",
+    "updated-hardware.json": "43b8f6c4fa19c851121d320413955910fc45631596cd773ee0e5a35f9964b81a",
+    "updated-simulated-1ms.json": "f22fb85272f427b956bb70f051ca36bf16022d9ffd6d5b3951bdf05887110713",
+    "updated-simulated-50ms.json": "a46ec46e482268177f5b252a0fe35671683ab358d7cfc4238d1f769be4799a62",
+    "bundle-check.json": "df8682dafca8055e2797c488cbc872e7cc241ea68172c87fca365757b5cfd3e6",
+    "notifications-hardware.json": "67e043c17df4edde1113b670dd4541ef5916f02d2b456c12e4e6b9b527f3f3f8",
+    "updated-hardware-60s.json": "a7e855b97a7ba7342345e1d1191579ecac01307e04d275ca7d4bfb4a30149023",
+    "installed-check.json": "528437b5f99b08e6c94b19442f15e7940966414249bde55dcc6cb4d3ed2623e6"
+  },
+  "regression": {
+    "tests": 152,
+    "seconds": 8.338,
+    "passed": true,
+    "scope": "Real Tk event loop and simulated devices, including Windows transport paths; not Windows hardware"
+  },
+  "bundle_build": "20261113.3",
+  "dmg_sha256": "ad62341b39dded1cbacab4335854f3e95658400dd3b58405bf7095d3e715ddc2",
+  "dmg_bytes": 18858574,
+  "supplemental_runs": {
+    "updated-hardware-60s.json": {
+      "evidence_kind": "hardware_tk_scheduler",
+      "started_utc": "2026-11-13T09:40:59.805130+00:00",
+      "metadata": {
+        "source_commit": "a8cf134c7724b3c8b857724eefc35d7749c508a0",
+        "measured_source_dirty": false,
+        "source_sha256": {
+          "msu2.py": "71c19b9fd6d5eee591bd3504532458002da16c0c05a94d1419dae4139b467e55",
+          "app.py": "f828af04043a6dc080c3a69ad0e300d1ea02de43f8d7a2e621663497707ca853"
+        },
+        "python": "3.13.12 | packaged by Anaconda, Inc. | (main, Feb 24 2026, 16:07:20) [Clang 20.1.8 ]",
+        "platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+        "dependencies": {
+          "pyserial": "3.5",
+          "Pillow": "12.3.0",
+          "psutil": "7.2.2"
+        }
+      },
+      "target_fps": 10,
+      "requested_seconds": 60.0,
+      "ui_step_ms": 1,
+      "input": "synthetic RGB moving block through App.render_request",
+      "button_polling": true,
+      "flash_written": false,
+      "passed": true,
+      "measured_seconds": 60.00033558299765,
+      "frames": 591,
+      "completed_fps": 9.849944908766014,
+      "adc_samples": 1152,
+      "preview_updates": 591,
+      "serial_recoveries": 0,
+      "frame_start_interval_ms": {
+        "median": 99.99612509272993,
+        "p95": 101.53287509456277,
+        "p99": 144.67954100109637,
+        "max": 742.5242499448359
+      },
+      "show_duration_ms": {
+        "median": 42.77395806275308,
+        "p95": 51.19941686280072,
+        "p99": 118.1454579345882,
+        "max": 723.1762909796089
+      },
+      "worker_completion_to_ui_ms": {
+        "median": 1.2548330705612898,
+        "p95": 4.711209097877145,
+        "p99": 5.461832974106073,
+        "max": 78.1719998922199
+      }
+    },
+    "installed-check.json": {
+      "passed": true,
+      "bundle_build": "20261113.3",
+      "scope": "Installed home application; Chinese/editor/API/power and two real serial frames"
+    }
+  }
+}

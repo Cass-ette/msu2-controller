@@ -1,0 +1,498 @@
+{
+  "recorded_utc": "2026-11-13T08:08:54.173245+00:00",
+  "scope": "Original PR #1 benchmark unchanged; same 120 fixed + 120 moving frames at 10 FPS, direct Display.show, no GUI or flash writes",
+  "source_commit": "41142a302e1a4a3dc90cbaf509290b2a2b6761f9",
+  "timing_runs": [
+    {
+      "file": "timing-run-1.json",
+      "metadata": {
+        "source_commit": "41142a302e1a4a3dc90cbaf509290b2a2b6761f9",
+        "measured_source_dirty": false,
+        "source_sha256": {
+          "msu2.py": "f284742c412332161eae439263cc25d399a44ca8b53cf9f4d0990031eb6de261",
+          "app.py": "266f42a54549bc50d3b362f8a16d256dcc8a4948bca7eb4d6467760a87fd7a41"
+        },
+        "python": "3.13.12 | packaged by Anaconda, Inc. | (main, Feb 24 2026, 16:07:20) [Clang 20.1.8 ]",
+        "platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+        "dependencies": {
+          "pyserial": "3.5",
+          "Pillow": "12.3.0",
+          "psutil": "7.2.2"
+        }
+      },
+      "patterns": {
+        "fixed": {
+          "frames": 120,
+          "metrics_ms": {
+            "generate": {
+              "median": 0.0645,
+              "p95": 0.229208,
+              "p99": 0.39025,
+              "max": 2.629667
+            },
+            "rgb565": {
+              "median": 2.0630214999999996,
+              "p95": 6.032375,
+              "p99": 9.603291,
+              "max": 208.422459
+            },
+            "encode_packets": {
+              "median": 1.082792,
+              "p95": 2.754042,
+              "p99": 7.419708,
+              "max": 32.943667
+            },
+            "write_calls": {
+              "median": 40.8949785,
+              "p95": 96.705959,
+              "p99": 115.375082,
+              "max": 134.714582
+            },
+            "all_serial_reads": {
+              "median": 1.4968745,
+              "p95": 3.15754,
+              "p99": 4.917916,
+              "max": 9.433749
+            },
+            "pre_register_reads": {
+              "median": 0.0,
+              "p95": 0.0,
+              "p99": 0.0,
+              "max": 0.0
+            },
+            "display_ack_reads": {
+              "median": 0.27075,
+              "p95": 1.159792,
+              "p99": 1.276374,
+              "max": 3.297125
+            },
+            "post_register_reads": {
+              "median": 1.1987705,
+              "p95": 1.945499,
+              "p99": 3.850418,
+              "max": 8.438208
+            },
+            "total": {
+              "median": 46.273250000000004,
+              "p95": 108.707542,
+              "p99": 136.534292,
+              "max": 317.622875
+            },
+            "start_interval_ms": {
+              "median": 100.052959,
+              "p95": 110.40525,
+              "p99": 136.536708,
+              "max": 317.624667
+            }
+          },
+          "total_over_100ms": 9
+        },
+        "moving": {
+          "frames": 120,
+          "metrics_ms": {
+            "generate": {
+              "median": 0.0497705,
+              "p95": 0.133125,
+              "p99": 0.324083,
+              "max": 0.845416
+            },
+            "rgb565": {
+              "median": 1.3716045000000001,
+              "p95": 5.072625,
+              "p99": 9.762,
+              "max": 19.632375
+            },
+            "encode_packets": {
+              "median": 0.7335415000000001,
+              "p95": 2.904125,
+              "p99": 3.200417,
+              "max": 3.678083
+            },
+            "write_calls": {
+              "median": 40.454291,
+              "p95": 43.971001,
+              "p99": 47.40475,
+              "max": 59.601374
+            },
+            "all_serial_reads": {
+              "median": 1.3631250000000001,
+              "p95": 1.832043,
+              "p99": 1.934125,
+              "max": 11.533335
+            },
+            "pre_register_reads": {
+              "median": 0.0,
+              "p95": 0.0,
+              "p99": 0.0,
+              "max": 0.0
+            },
+            "display_ack_reads": {
+              "median": 0.25352149999999996,
+              "p95": 0.316792,
+              "p99": 0.40075,
+              "max": 10.341918
+            },
+            "post_register_reads": {
+              "median": 1.1074160000000002,
+              "p95": 1.564626,
+              "p99": 1.614959,
+              "max": 1.676875
+            },
+            "total": {
+              "median": 44.188520999999994,
+              "p95": 52.62575,
+              "p99": 64.5075,
+              "max": 69.707917
+            },
+            "start_interval_ms": {
+              "median": 100.001667,
+              "p95": 104.551542,
+              "p99": 104.734291,
+              "max": 113.243334
+            }
+          },
+          "total_over_100ms": 0
+        }
+      }
+    },
+    {
+      "file": "timing-run-2.json",
+      "metadata": {
+        "source_commit": "41142a302e1a4a3dc90cbaf509290b2a2b6761f9",
+        "measured_source_dirty": false,
+        "source_sha256": {
+          "msu2.py": "f284742c412332161eae439263cc25d399a44ca8b53cf9f4d0990031eb6de261",
+          "app.py": "266f42a54549bc50d3b362f8a16d256dcc8a4948bca7eb4d6467760a87fd7a41"
+        },
+        "python": "3.13.12 | packaged by Anaconda, Inc. | (main, Feb 24 2026, 16:07:20) [Clang 20.1.8 ]",
+        "platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+        "dependencies": {
+          "pyserial": "3.5",
+          "Pillow": "12.3.0",
+          "psutil": "7.2.2"
+        }
+      },
+      "patterns": {
+        "fixed": {
+          "frames": 120,
+          "metrics_ms": {
+            "generate": {
+              "median": 0.0871875,
+              "p95": 0.550958,
+              "p99": 0.970708,
+              "max": 14.195666
+            },
+            "rgb565": {
+              "median": 3.5053965,
+              "p95": 7.568792,
+              "p99": 56.906125,
+              "max": 146.772333
+            },
+            "encode_packets": {
+              "median": 1.8131455,
+              "p95": 4.574791,
+              "p99": 13.6165,
+              "max": 21.828833
+            },
+            "write_calls": {
+              "median": 41.827479499999995,
+              "p95": 93.542334,
+              "p99": 115.776165,
+              "max": 178.208916
+            },
+            "all_serial_reads": {
+              "median": 1.441479,
+              "p95": 3.071167,
+              "p99": 4.906458,
+              "max": 11.381209
+            },
+            "pre_register_reads": {
+              "median": 0.0,
+              "p95": 0.0,
+              "p99": 0.0,
+              "max": 0.0
+            },
+            "display_ack_reads": {
+              "median": 0.26045850000000004,
+              "p95": 0.511416,
+              "p99": 4.50475,
+              "max": 9.9915
+            },
+            "post_register_reads": {
+              "median": 1.1561455,
+              "p95": 1.959667,
+              "p99": 3.281959,
+              "max": 3.672208
+            },
+            "total": {
+              "median": 50.146646000000004,
+              "p95": 112.835625,
+              "p99": 182.197417,
+              "max": 262.73225
+            },
+            "start_interval_ms": {
+              "median": 100.001417,
+              "p95": 130.129417,
+              "p99": 182.19875,
+              "max": 262.733916
+            }
+          },
+          "total_over_100ms": 10
+        },
+        "moving": {
+          "frames": 120,
+          "metrics_ms": {
+            "generate": {
+              "median": 0.0855,
+              "p95": 0.196375,
+              "p99": 0.310083,
+              "max": 0.747875
+            },
+            "rgb565": {
+              "median": 3.8718329999999996,
+              "p95": 5.501833,
+              "p99": 6.574667,
+              "max": 8.954792
+            },
+            "encode_packets": {
+              "median": 1.959021,
+              "p95": 2.81575,
+              "p99": 3.322375,
+              "max": 4.527667
+            },
+            "write_calls": {
+              "median": 41.5278955,
+              "p95": 46.559418,
+              "p99": 52.314209,
+              "max": 58.42575
+            },
+            "all_serial_reads": {
+              "median": 1.3208955,
+              "p95": 1.831209,
+              "p99": 2.156709,
+              "max": 5.668583
+            },
+            "pre_register_reads": {
+              "median": 0.0,
+              "p95": 0.0,
+              "p99": 0.0,
+              "max": 0.0
+            },
+            "display_ack_reads": {
+              "median": 0.2580205,
+              "p95": 0.473958,
+              "p99": 0.581042,
+              "max": 0.675959
+            },
+            "post_register_reads": {
+              "median": 1.0711249999999999,
+              "p95": 1.572999,
+              "p99": 1.904959,
+              "max": 5.386458
+            },
+            "total": {
+              "median": 49.15725,
+              "p95": 54.715417,
+              "p99": 58.808875,
+              "max": 67.34625
+            },
+            "start_interval_ms": {
+              "median": 99.962,
+              "p95": 104.32075,
+              "p99": 104.440458,
+              "max": 106.423333
+            }
+          },
+          "total_over_100ms": 0
+        }
+      }
+    },
+    {
+      "file": "timing-visual-replay.json",
+      "metadata": {
+        "source_commit": "41142a302e1a4a3dc90cbaf509290b2a2b6761f9",
+        "measured_source_dirty": false,
+        "source_sha256": {
+          "msu2.py": "f284742c412332161eae439263cc25d399a44ca8b53cf9f4d0990031eb6de261",
+          "app.py": "266f42a54549bc50d3b362f8a16d256dcc8a4948bca7eb4d6467760a87fd7a41"
+        },
+        "python": "3.13.12 | packaged by Anaconda, Inc. | (main, Feb 24 2026, 16:07:20) [Clang 20.1.8 ]",
+        "platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+        "dependencies": {
+          "pyserial": "3.5",
+          "Pillow": "12.3.0",
+          "psutil": "7.2.2"
+        }
+      },
+      "patterns": {
+        "fixed": {
+          "frames": 120,
+          "metrics_ms": {
+            "generate": {
+              "median": 0.083958,
+              "p95": 0.364291,
+              "p99": 0.793208,
+              "max": 61.172542
+            },
+            "rgb565": {
+              "median": 4.105520500000001,
+              "p95": 7.113041,
+              "p99": 19.305167,
+              "max": 63.832083
+            },
+            "encode_packets": {
+              "median": 2.0602715,
+              "p95": 3.034125,
+              "p99": 9.295292,
+              "max": 39.803875
+            },
+            "write_calls": {
+              "median": 41.454583,
+              "p95": 56.302166,
+              "p99": 82.509542,
+              "max": 91.248625
+            },
+            "all_serial_reads": {
+              "median": 1.3408125,
+              "p95": 1.865874,
+              "p99": 2.494332,
+              "max": 9.032084
+            },
+            "pre_register_reads": {
+              "median": 0.0,
+              "p95": 0.0,
+              "p99": 0.0,
+              "max": 0.0
+            },
+            "display_ack_reads": {
+              "median": 0.26158349999999997,
+              "p95": 0.356709,
+              "p99": 0.434625,
+              "max": 8.087167
+            },
+            "post_register_reads": {
+              "median": 1.0772705,
+              "p95": 1.572834,
+              "p99": 1.948583,
+              "max": 2.157707
+            },
+            "total": {
+              "median": 49.8252705,
+              "p95": 64.640083,
+              "p99": 96.292083,
+              "max": 228.606625
+            },
+            "start_interval_ms": {
+              "median": 99.993333,
+              "p95": 104.246208,
+              "p99": 137.89225,
+              "max": 228.608958
+            }
+          },
+          "total_over_100ms": 2
+        },
+        "moving": {
+          "frames": 120,
+          "metrics_ms": {
+            "generate": {
+              "median": 0.072,
+              "p95": 0.183083,
+              "p99": 0.270834,
+              "max": 1.083667
+            },
+            "rgb565": {
+              "median": 3.5144795,
+              "p95": 6.0945,
+              "p99": 6.2015,
+              "max": 6.602625
+            },
+            "encode_packets": {
+              "median": 1.787125,
+              "p95": 2.686583,
+              "p99": 3.062084,
+              "max": 19.458708
+            },
+            "write_calls": {
+              "median": 41.284791999999996,
+              "p95": 45.276083,
+              "p99": 46.329291,
+              "max": 52.951959
+            },
+            "all_serial_reads": {
+              "median": 1.416022,
+              "p95": 1.941124,
+              "p99": 2.152749,
+              "max": 4.825999
+            },
+            "pre_register_reads": {
+              "median": 0.0,
+              "p95": 0.0,
+              "p99": 0.0,
+              "max": 0.0
+            },
+            "display_ack_reads": {
+              "median": 0.2586465,
+              "p95": 0.328958,
+              "p99": 0.370083,
+              "max": 4.094375
+            },
+            "post_register_reads": {
+              "median": 1.1626875,
+              "p95": 1.658833,
+              "p99": 1.685541,
+              "max": 2.128417
+            },
+            "total": {
+              "median": 48.2250625,
+              "p95": 54.305166,
+              "p99": 57.570917,
+              "max": 68.006958
+            },
+            "start_interval_ms": {
+              "median": 99.995875,
+              "p95": 102.805666,
+              "p99": 103.590917,
+              "max": 104.145583
+            }
+          },
+          "total_over_100ms": 0
+        }
+      }
+    }
+  ],
+  "trace": {
+    "fixed": {
+      "counts": {
+        "Display._write": 6,
+        "serial.write": 655,
+        "serial.read": 4
+      },
+      "no_short_reads_or_writes": true,
+      "payload_sha256": "f522dc3d0410040cc1184c83fac19e44cef65f14c6321feaca8e065ccb1ec02e",
+      "matched_windows_synthetic_payload": true
+    },
+    "moving": {
+      "counts": {
+        "Display._write": 6,
+        "serial.write": 655,
+        "serial.read": 4
+      },
+      "no_short_reads_or_writes": true,
+      "payload_sha256": "efb017e39160842cb15b9fb81e61d85253a365edb08b5f7feb6f8114b0e55d41",
+      "matched_windows_synthetic_payload": true
+    }
+  },
+  "visual_observation": {
+    "run": "timing-visual-replay.json",
+    "user_report": "现在很明显流畅了很多",
+    "meaning": "User reports substantially smoother rendering during the direct 10 FPS replay; not a measured LCD scan time or comparison of every GUI mode"
+  },
+  "usb_capture": false,
+  "flash_written": false,
+  "sha256": {
+    "timing-run-1.json": "fde00327b6ee69bcb33803edd9a47d7817f2fd3f4e0fc9a2719b83e8d3a09aa6",
+    "timing-visual-replay.json": "e6a3c4cefa1ab376ccf4f04c737a19aa48af20b4b4cf1ac0099b0817655b348d",
+    "host-calls.json": "13708981d3d3e65935098fe7eb22696db5c7d1375dd3d16098ec6591f9cc30b4",
+    "timing-run-2.json": "1be0ff6ba7e48367d0d961f54ded79ab8669688877e0df6ddfd62714ab4cc69c"
+  }
+}

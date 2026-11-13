@@ -67,7 +67,7 @@ Mac 安装版将数据存放在应用外部，更新 `.app` 保留数据：
 python -B -m unittest discover -v
 ```
 
-测试包含真实 Tk 事件循环及模拟设备，需可用的图形会话；Linux CI 使用 Xvfb。最新 Mac 完整回归 138 项通过；另完成 600 帧混合内容传图、打包运行时及真实串口检查。结果和限制见 [验证记录](docs/testing.md)。
+测试包含真实 Tk 事件循环及模拟设备，需可用的图形会话；Linux CI 使用 Xvfb。最新 Mac 完整回归 152 项通过；另完成混合内容传图、真实 GUI 与按键轮询对照、通知恢复及独立应用串口检查。结果和限制见 [验证记录](docs/testing.md) 和 [GUI 调度对照](diagnostics/refresh/2026-11-13-gui-scheduler/README.md)。
 
 Mac 实时传图保留 60 字节分包，移除原每包 1 ms 人为等待；混合内容单帧含编码 / 传输 / 应答约 50 ms，闪存长写仍保留保守节奏。未实现固件双缓冲，刷新差异仍需与 Windows 实际版本对照。
 

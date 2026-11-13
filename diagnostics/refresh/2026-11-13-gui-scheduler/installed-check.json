@@ -1,0 +1,42 @@
+{
+  "started_utc": "2026-11-13T09:39:03.382925+00:00",
+  "frozen": true,
+  "flash_written": false,
+  "steps": [
+    {
+      "step": "tk_gui",
+      "version": "8.6.15"
+    },
+    {
+      "step": "all_editor_windows_and_crop",
+      "passed": true
+    },
+    {
+      "step": "bundled_example",
+      "frames": 36
+    },
+    {
+      "step": "notification_http",
+      "passed": true
+    },
+    {
+      "step": "power",
+      "state": "充电",
+      "error": ""
+    },
+    {
+      "step": "real_serial_display",
+      "frames": 2,
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "font": [
+    "PingFang SC",
+    "Regular"
+  ],
+  "capture_access": {
+    "required": true,
+    "granted": true
+  }
+}
