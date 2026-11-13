@@ -32,7 +32,7 @@ app = BUNDLE(
     info_plist={
         'CFBundleDisplayName': 'MSU2 小屏控制器',
         'CFBundleShortVersionString': '2026.11.13',
-        'CFBundleVersion': '20261113.1',
+        'CFBundleVersion': '20261113.2',
         'LSMinimumSystemVersion': '13.0',
         'LSApplicationCategoryType': 'public.app-category.utilities',
         'NSHighResolutionCapable': True,

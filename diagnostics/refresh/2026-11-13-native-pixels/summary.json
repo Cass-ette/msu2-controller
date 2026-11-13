@@ -1,0 +1,438 @@
+{
+  "baseline_source_commit": "5991e71343b3a4175adc1446c2fa6a8eb293af93",
+  "baseline_note": "Four unchanged source files copied from baseline commit without .git; original JSON commit fields are null. SHA-256 identifies measured source.",
+  "optimized_source_commit": "7707093fa8fd85f3ff4b88999adc6186efccf7e9",
+  "hardware_run_order": [
+    "baseline",
+    "optimized"
+  ],
+  "flash_written": false,
+  "hardware": {
+    "baseline": {
+      "fixed": {
+        "frames": 120,
+        "metrics_ms": {
+          "generate": {
+            "median": 0.06814600000000001,
+            "p95": 0.198542,
+            "p99": 0.609291,
+            "max": 1.084667
+          },
+          "rgb565": {
+            "median": 1.5497290000000001,
+            "p95": 3.647208,
+            "p99": 6.383417,
+            "max": 51.211125
+          },
+          "encode_packets": {
+            "median": 0.756104,
+            "p95": 1.771584,
+            "p99": 2.826459,
+            "max": 5.81625
+          },
+          "write_calls": {
+            "median": 40.501791499999996,
+            "p95": 54.300084,
+            "p99": 104.833792,
+            "max": 141.732792
+          },
+          "all_serial_reads": {
+            "median": 1.4648965,
+            "p95": 2.026126,
+            "p99": 2.422167,
+            "max": 73.054875
+          },
+          "pre_register_reads": {
+            "median": 0.0,
+            "p95": 0.0,
+            "p99": 0.0,
+            "max": 0.0
+          },
+          "display_ack_reads": {
+            "median": 0.255604,
+            "p95": 0.320792,
+            "p99": 0.498042,
+            "max": 1.750959
+          },
+          "post_register_reads": {
+            "median": 1.1845824999999999,
+            "p95": 1.722458,
+            "p99": 1.897291,
+            "max": 72.812166
+          },
+          "total": {
+            "median": 44.529833499999995,
+            "p95": 66.422167,
+            "p99": 146.124417,
+            "max": 185.368333
+          },
+          "start_interval_ms": {
+            "median": 100.003167,
+            "p95": 104.3865,
+            "p99": 146.12975,
+            "max": 185.37025
+          }
+        },
+        "total_over_100ms": 4,
+        "protocol_write_counts": [
+          6
+        ],
+        "serial_read_counts": [
+          4
+        ]
+      },
+      "moving": {
+        "frames": 120,
+        "metrics_ms": {
+          "generate": {
+            "median": 0.086729,
+            "p95": 0.35525,
+            "p99": 0.619833,
+            "max": 26.765708
+          },
+          "rgb565": {
+            "median": 2.2151045,
+            "p95": 6.647833,
+            "p99": 11.268542,
+            "max": 267.141208
+          },
+          "encode_packets": {
+            "median": 1.028729,
+            "p95": 2.637709,
+            "p99": 4.781292,
+            "max": 6.555916
+          },
+          "write_calls": {
+            "median": 41.1886475,
+            "p95": 62.542625,
+            "p99": 128.580291,
+            "max": 423.437584
+          },
+          "all_serial_reads": {
+            "median": 1.3691245,
+            "p95": 2.108749,
+            "p99": 4.2625,
+            "max": 8.042459
+          },
+          "pre_register_reads": {
+            "median": 0.0,
+            "p95": 0.0,
+            "p99": 0.0,
+            "max": 0.0
+          },
+          "display_ack_reads": {
+            "median": 0.2557705,
+            "p95": 0.812875,
+            "p99": 1.771375,
+            "max": 7.580626
+          },
+          "post_register_reads": {
+            "median": 1.062479,
+            "p95": 1.607333,
+            "p99": 3.618916,
+            "max": 4.792209
+          },
+          "total": {
+            "median": 46.510854,
+            "p95": 71.656917,
+            "p99": 137.134375,
+            "max": 799.256583
+          },
+          "start_interval_ms": {
+            "median": 99.428834,
+            "p95": 104.717917,
+            "p99": 137.138042,
+            "max": 799.266
+          }
+        },
+        "total_over_100ms": 3,
+        "protocol_write_counts": [
+          6
+        ],
+        "serial_read_counts": [
+          4
+        ]
+      }
+    },
+    "optimized": {
+      "fixed": {
+        "frames": 120,
+        "metrics_ms": {
+          "generate": {
+            "median": 0.0885,
+            "p95": 0.307083,
+            "p99": 0.804167,
+            "max": 2.231917
+          },
+          "rgb565": {
+            "median": 0.22489599999999998,
+            "p95": 0.880167,
+            "p99": 4.228875,
+            "max": 5.191458
+          },
+          "encode_packets": {
+            "median": 0.0930415,
+            "p95": 0.643292,
+            "p99": 1.007959,
+            "max": 3.777208
+          },
+          "write_calls": {
+            "median": 40.8220405,
+            "p95": 76.298208,
+            "p99": 115.355251,
+            "max": 154.753875
+          },
+          "all_serial_reads": {
+            "median": 1.4460419999999998,
+            "p95": 2.857332,
+            "p99": 5.199791,
+            "max": 10.185832
+          },
+          "pre_register_reads": {
+            "median": 0.0,
+            "p95": 0.0,
+            "p99": 0.0,
+            "max": 0.0
+          },
+          "display_ack_reads": {
+            "median": 0.2566875,
+            "p95": 0.500875,
+            "p99": 1.479874,
+            "max": 6.777042
+          },
+          "post_register_reads": {
+            "median": 1.1592289999999998,
+            "p95": 2.09525,
+            "p99": 3.001792,
+            "max": 9.905583
+          },
+          "total": {
+            "median": 42.798375,
+            "p95": 82.2635,
+            "p99": 118.748959,
+            "max": 156.964666
+          },
+          "start_interval_ms": {
+            "median": 99.822209,
+            "p95": 104.866708,
+            "p99": 118.750709,
+            "max": 156.966916
+          }
+        },
+        "total_over_100ms": 4,
+        "protocol_write_counts": [
+          6
+        ],
+        "serial_read_counts": [
+          4
+        ]
+      },
+      "moving": {
+        "frames": 120,
+        "metrics_ms": {
+          "generate": {
+            "median": 0.069958,
+            "p95": 0.238833,
+            "p99": 0.397375,
+            "max": 0.471125
+          },
+          "rgb565": {
+            "median": 0.277229,
+            "p95": 0.755958,
+            "p99": 1.388166,
+            "max": 3.360083
+          },
+          "encode_packets": {
+            "median": 0.1282705,
+            "p95": 0.396625,
+            "p99": 0.600708,
+            "max": 1.681417
+          },
+          "write_calls": {
+            "median": 40.6179165,
+            "p95": 47.355791,
+            "p99": 54.209541,
+            "max": 103.722292
+          },
+          "all_serial_reads": {
+            "median": 1.4103335000000001,
+            "p95": 2.663666,
+            "p99": 3.061582,
+            "max": 7.238542
+          },
+          "pre_register_reads": {
+            "median": 0.0,
+            "p95": 0.0,
+            "p99": 0.0,
+            "max": 0.0
+          },
+          "display_ack_reads": {
+            "median": 0.2589165,
+            "p95": 0.665459,
+            "p99": 1.214792,
+            "max": 5.78
+          },
+          "post_register_reads": {
+            "median": 1.125458,
+            "p95": 2.139667,
+            "p99": 2.45425,
+            "max": 3.200834
+          },
+          "total": {
+            "median": 42.745729499999996,
+            "p95": 51.863542,
+            "p99": 56.137625,
+            "max": 107.3925
+          },
+          "start_interval_ms": {
+            "median": 99.962292,
+            "p95": 104.430833,
+            "p99": 104.674417,
+            "max": 107.393959
+          }
+        },
+        "total_over_100ms": 1,
+        "protocol_write_counts": [
+          6
+        ],
+        "serial_read_counts": [
+          4
+        ]
+      }
+    }
+  },
+  "cpu_only": {
+    "fixed": {
+      "baseline": {
+        "rgb565": {
+          "median": 1.5182715,
+          "p95": 2.569625,
+          "p99": 3.431584,
+          "max": 3.979417
+        },
+        "encode_packets": {
+          "median": 0.78425,
+          "p95": 1.407416,
+          "p99": 1.967667,
+          "max": 3.112875
+        },
+        "total": {
+          "median": 2.3319585,
+          "p95": 3.848125,
+          "p99": 4.999,
+          "max": 6.034584
+        }
+      },
+      "optimized": {
+        "rgb565": {
+          "median": 0.112625,
+          "p95": 0.272875,
+          "p99": 0.385959,
+          "max": 0.5125
+        },
+        "encode_packets": {
+          "median": 0.0829375,
+          "p95": 0.181,
+          "p99": 0.279083,
+          "max": 0.34175
+        },
+        "total": {
+          "median": 0.2028545,
+          "p95": 0.395958,
+          "p99": 0.579125,
+          "max": 0.85425
+        }
+      }
+    },
+    "moving": {
+      "baseline": {
+        "rgb565": {
+          "median": 1.5115,
+          "p95": 2.117334,
+          "p99": 2.965458,
+          "max": 4.055209
+        },
+        "encode_packets": {
+          "median": 0.7891455,
+          "p95": 1.366,
+          "p99": 1.617125,
+          "max": 2.149125
+        },
+        "total": {
+          "median": 2.335604,
+          "p95": 3.285042,
+          "p99": 4.285042,
+          "max": 6.204334
+        }
+      },
+      "optimized": {
+        "rgb565": {
+          "median": 0.1123335,
+          "p95": 0.275583,
+          "p99": 0.472375,
+          "max": 1.039
+        },
+        "encode_packets": {
+          "median": 0.082667,
+          "p95": 0.164709,
+          "p99": 0.249458,
+          "max": 2.123792
+        },
+        "total": {
+          "median": 0.201708,
+          "p95": 0.446,
+          "p99": 0.739667,
+          "max": 2.314084
+        }
+      }
+    },
+    "colors": {
+      "baseline": {
+        "rgb565": {
+          "median": 1.9985840000000001,
+          "p95": 2.225208,
+          "p99": 2.449959,
+          "max": 3.033875
+        },
+        "encode_packets": {
+          "median": 0.7566455000000001,
+          "p95": 0.891917,
+          "p99": 0.990625,
+          "max": 1.164584
+        },
+        "total": {
+          "median": 2.7667915,
+          "p95": 3.01125,
+          "p99": 3.240375,
+          "max": 3.841292
+        }
+      },
+      "optimized": {
+        "rgb565": {
+          "median": 0.107604,
+          "p95": 0.161667,
+          "p99": 0.2075,
+          "max": 0.32875
+        },
+        "encode_packets": {
+          "median": 0.08210400000000001,
+          "p95": 0.123459,
+          "p99": 0.162167,
+          "max": 0.225167
+        },
+        "total": {
+          "median": 0.1935625,
+          "p95": 0.2595,
+          "p99": 0.355292,
+          "max": 0.412333
+        }
+      }
+    }
+  },
+  "file_sha256": {
+    "baseline-timing.json": "d38eda106919ef439b177d4cbe02c99cb6a7eceace7815b0c40b17f2e54db9e2",
+    "optimized-timing.json": "7bbab4fde4d618ccbbfebfc92a850ed5664b4a3a74e4e30a026f1d7338b818d0",
+    "host-preparation.json": "4f7575cb4e92ed6f4894166e88181fe3ea70f587962489e8b1652049147a695f",
+    "bundle-check.json": "ab36bee7850130f338349c9c457c10e19e10b33207c96ad96dacdc56605d32a8"
+  }
+}

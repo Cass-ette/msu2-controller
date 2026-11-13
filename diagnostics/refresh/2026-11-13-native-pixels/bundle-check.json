@@ -1,0 +1,41 @@
+{
+  "started_utc": "2026-11-13T08:28:40.625853+00:00",
+  "frozen": true,
+  "font": [
+    "PingFang SC",
+    "Regular"
+  ],
+  "steps": [
+    {
+      "step": "tk_gui",
+      "version": "8.6.15"
+    },
+    {
+      "step": "all_editor_windows_and_crop",
+      "passed": true
+    },
+    {
+      "step": "bundled_example",
+      "frames": 36
+    },
+    {
+      "step": "notification_http",
+      "passed": true
+    },
+    {
+      "step": "power",
+      "state": "放电",
+      "error": ""
+    },
+    {
+      "step": "real_serial_display",
+      "frames": 2,
+      "passed": true
+    }
+  ],
+  "flash_written": false,
+  "passed": true,
+  "bundle_build": "20261113.2",
+  "source_commit": "7707093fa8fd85f3ff4b88999adc6186efccf7e9",
+  "dmg_sha256": "f564bf5421d8e7608b85efbdf80f5e307572df1d7a28b1f672746cb8da0ba9c4"
+}
