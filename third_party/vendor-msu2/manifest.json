@@ -1,0 +1,19 @@
+{
+  "archived_date": "2026-11-13",
+  "source": "User-provided local copy of the manufacturer's original documentation",
+  "manufacturer": "墨砺工作室 / MORI ATELIERS",
+  "project_license_applies": false,
+  "files": [
+    {
+      "filename": "使用及开发指南-MSU2系列可编程USB屏幕_20241102224357.pdf",
+      "kind": "manufacturer_manual",
+      "version_from_cover": "1.10",
+      "date_from_cover": "2024-11-02",
+      "author_from_cover": "Einx",
+      "bytes": 2885706,
+      "pages": 24,
+      "sha256": "0b242b6e30b7907f52825df16ed9bc7a955e82cc1d807a2640148130ee85d185",
+      "modified": false
+    }
+  ]
+}
