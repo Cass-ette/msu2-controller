@@ -1,0 +1,26 @@
+CONNECTED protocol=01 width=160 height=80
+PATTERN fixed frames 120 target_fps 10
+generate median=0.081 p95=0.156 p99=0.163 max=0.246
+rgb565 median=1.970 p95=2.452 p99=2.707 max=3.995
+encode_packets median=1.086 p95=1.209 p99=1.294 max=1.447
+write_calls median=42.422 p95=42.871 p99=43.008 max=43.225
+all_serial_reads median=0.411 p95=0.527 p99=0.620 max=0.659
+pre_register_reads median=0.116 p95=0.176 p99=0.231 max=0.327
+display_ack_reads median=0.171 p95=0.232 p99=0.261 max=0.390
+post_register_reads median=0.118 p95=0.172 p99=0.207 max=0.254
+total median=46.167 p95=46.966 p99=47.140 max=48.697
+start_interval_ms median=100.008 p95=100.328 p99=100.378 max=100.485
+write_call_counts [8] read_call_counts [6]
+PATTERN moving frames 120 target_fps 10
+generate median=0.077 p95=0.160 p99=0.167 max=0.217
+rgb565 median=1.949 p95=2.378 p99=2.516 max=2.878
+encode_packets median=1.084 p95=1.162 p99=1.361 max=2.016
+write_calls median=42.450 p95=42.856 p99=43.007 max=43.072
+all_serial_reads median=0.415 p95=0.535 p99=0.575 max=0.593
+pre_register_reads median=0.112 p95=0.178 p99=0.236 max=0.268
+display_ack_reads median=0.172 p95=0.249 p99=0.285 max=0.295
+post_register_reads median=0.118 p95=0.177 p99=0.189 max=0.227
+total median=46.137 p95=46.787 p99=46.996 max=47.377
+start_interval_ms median=99.997 p95=100.453 p99=100.495 max=100.685
+write_call_counts [8] read_call_counts [6]
+CLOSED

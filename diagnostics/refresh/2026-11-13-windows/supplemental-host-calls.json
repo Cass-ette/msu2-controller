@@ -1,0 +1,1083 @@
+{
+  "evidence_kind": "supplemental_hardware_host_call_trace",
+  "captured_utc": "2026-11-13T07:42:41.902748+00:00",
+  "metadata": {
+    "source_commit": null,
+    "measured_source_dirty": null,
+    "source_sha256": {
+      "msu2.py": "2990752e4a8a0e38d81b66d4b0d3604353b92e27604032f9046742fbb76e10e7",
+      "app.py": "de14631e52ed8a8f505c558bf937b174ce8639fb3f65e53f7fb0451c5c228f56"
+    },
+    "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "dependencies": {
+      "pyserial": "3.5",
+      "Pillow": "12.3.0",
+      "psutil": "7.2.2"
+    }
+  },
+  "frames": [
+    {
+      "pattern": "fixed",
+      "index": 0,
+      "events": [
+        {
+          "sequence": 1,
+          "kind": "Display._write",
+          "callers": [
+            {
+              "function": "_exchange",
+              "line": 153
+            },
+            {
+              "function": "_read_command",
+              "line": 178
+            },
+            {
+              "function": "read_u16",
+              "line": 195
+            },
+            {
+              "function": "keep_alive",
+              "line": 186
+            },
+            {
+              "function": "show",
+              "line": 245
+            }
+          ],
+          "requested_length": 6,
+          "payload": false,
+          "hex": "00 30 20 00 00 00",
+          "return_value": null
+        },
+        {
+          "sequence": 2,
+          "kind": "serial.write",
+          "callers": [
+            {
+              "function": "_write",
+              "line": 145
+            },
+            {
+              "function": "_exchange",
+              "line": 153
+            },
+            {
+              "function": "_read_command",
+              "line": 178
+            },
+            {
+              "function": "read_u16",
+              "line": 195
+            },
+            {
+              "function": "keep_alive",
+              "line": 186
+            },
+            {
+              "function": "show",
+              "line": 245
+            }
+          ],
+          "requested_length": 6,
+          "parent_sequence": 1,
+          "hex": "00 30 20 00 00 00",
+          "actual_return_length": 6
+        },
+        {
+          "sequence": 3,
+          "kind": "serial.read",
+          "callers": [
+            {
+              "function": "_read_exact",
+              "line": 134
+            },
+            {
+              "function": "_exchange",
+              "line": 154
+            },
+            {
+              "function": "_read_command",
+              "line": 178
+            },
+            {
+              "function": "read_u16",
+              "line": 195
+            },
+            {
+              "function": "keep_alive",
+              "line": 186
+            },
+            {
+              "function": "show",
+              "line": 245
+            }
+          ],
+          "requested_length": 6,
+          "actual_return_length": 6,
+          "hex": "00 30 20 00 00 a0"
+        },
+        {
+          "sequence": 4,
+          "kind": "Display._write",
+          "callers": [
+            {
+              "function": "_exchange",
+              "line": 153
+            },
+            {
+              "function": "_read_command",
+              "line": 178
+            },
+            {
+              "function": "read_u16",
+              "line": 195
+            },
+            {
+              "function": "keep_alive",
+              "line": 186
+            },
+            {
+              "function": "show",
+              "line": 245
+            }
+          ],
+          "requested_length": 6,
+          "payload": false,
+          "hex": "00 30 20 01 00 00",
+          "return_value": null
+        },
+        {
+          "sequence": 5,
+          "kind": "serial.write",
+          "callers": [
+            {
+              "function": "_write",
+              "line": 145
+            },
+            {
+              "function": "_exchange",
+              "line": 153
+            },
+            {
+              "function": "_read_command",
+              "line": 178
+            },
+            {
+              "function": "read_u16",
+              "line": 195
+            },
+            {
+              "function": "keep_alive",
+              "line": 186
+            },
+            {
+              "function": "show",
+              "line": 245
+            }
+          ],
+          "requested_length": 6,
+          "parent_sequence": 4,
+          "hex": "00 30 20 01 00 00",
+          "actual_return_length": 6
+        },
+        {
+          "sequence": 6,
+          "kind": "serial.read",
+          "callers": [
+            {
+              "function": "_read_exact",
+              "line": 134
+            },
+            {
+              "function": "_exchange",
+              "line": 154
+            },
+            {
+              "function": "_read_command",
+              "line": 178
+            },
+            {
+              "function": "read_u16",
+              "line": 195
+            },
+            {
+              "function": "keep_alive",
+              "line": 186
+            },
+            {
+              "function": "show",
+              "line": 245
+            }
+          ],
+          "requested_length": 6,
+          "actual_return_length": 6,
+          "hex": "00 30 20 01 00 50"
+        },
+        {
+          "sequence": 7,
+          "kind": "Display._write",
+          "callers": [
+            {
+              "function": "show",
+              "line": 246
+            }
+          ],
+          "requested_length": 6,
+          "payload": false,
+          "hex": "02 00 00 00 00 00",
+          "return_value": null
+        },
+        {
+          "sequence": 8,
+          "kind": "serial.write",
+          "callers": [
+            {
+              "function": "_write",
+              "line": 145
+            },
+            {
+              "function": "show",
+              "line": 246
+            }
+          ],
+          "requested_length": 6,
+          "parent_sequence": 7,
+          "hex": "02 00 00 00 00 00",
+          "actual_return_length": 6
+        },
+        {
+          "sequence": 9,
+          "kind": "Display._write",
+          "callers": [
+            {
+              "function": "show",
+              "line": 247
+            }
+          ],
+          "requested_length": 6,
+          "payload": false,
+          "hex": "02 01 00 a0 00 50",
+          "return_value": null
+        },
+        {
+          "sequence": 10,
+          "kind": "serial.write",
+          "callers": [
+            {
+              "function": "_write",
+              "line": 145
+            },
+            {
+              "function": "show",
+              "line": 247
+            }
+          ],
+          "requested_length": 6,
+          "parent_sequence": 9,
+          "hex": "02 01 00 a0 00 50",
+          "actual_return_length": 6
+        },
+        {
+          "sequence": 11,
+          "kind": "Display._write",
+          "callers": [
+            {
+              "function": "show",
+              "line": 248
+            }
+          ],
+          "requested_length": 6,
+          "payload": false,
+          "hex": "02 03 07 00 00 00",
+          "return_value": null
+        },
+        {
+          "sequence": 12,
+          "kind": "serial.write",
+          "callers": [
+            {
+              "function": "_write",
+              "line": 145
+            },
+            {
+              "function": "show",
+              "line": 248
+            }
+          ],
+          "requested_length": 6,
+          "parent_sequence": 11,
+          "hex": "02 03 07 00 00 00",
+          "actual_return_length": 6
+        },
+        {
+          "sequence": 13,
+          "kind": "serial.read",
+          "callers": [
+            {
+              "function": "_read_exact",
+              "line": 134
+            },
+            {
+              "function": "show",
+              "line": 249
+            }
+          ],
+          "requested_length": 2,
+          "actual_return_length": 2,
+          "hex": "02 03"
+        },
+        {
+          "sequence": 14,
+          "kind": "serial.read",
+          "callers": [
+            {
+              "function": "show",
+              "line": 250
+            }
+          ],
+          "requested_length": 4,
+          "actual_return_length": 4,
+          "hex": "07 00 00 00"
+        },
+        {
+          "sequence": 15,
+          "kind": "Display._write",
+          "callers": [
+            {
+              "function": "show",
+              "line": 253
+            }
+          ],
+          "requested_length": 39000,
+          "payload": true,
+          "sha256": "f522dc3d0410040cc1184c83fac19e44cef65f14c6321feaca8e065ccb1ec02e",
+          "return_value": null
+        },
+        {
+          "sequence": 16,
+          "kind": "serial.write",
+          "callers": [
+            {
+              "function": "_write",
+              "line": 145
+            },
+            {
+              "function": "show",
+              "line": 253
+            }
+          ],
+          "requested_length": 39000,
+          "parent_sequence": 15,
+          "sha256": "f522dc3d0410040cc1184c83fac19e44cef65f14c6321feaca8e065ccb1ec02e",
+          "actual_return_length": 39000
+        },
+        {
+          "sequence": 17,
+          "kind": "Display._write",
+          "callers": [
+            {
+              "function": "_exchange",
+              "line": 153
+            },
+            {
+              "function": "_read_command",
+              "line": 178
+            },
+            {
+              "function": "read_u16",
+              "line": 195
+            },
+            {
+              "function": "show",
+              "line": 255
+            }
+          ],
+          "requested_length": 6,
+          "payload": false,
+          "hex": "00 30 20 00 00 00",
+          "return_value": null
+        },
+        {
+          "sequence": 18,
+          "kind": "serial.write",
+          "callers": [
+            {
+              "function": "_write",
+              "line": 145
+            },
+            {
+              "function": "_exchange",
+              "line": 153
+            },
+            {
+              "function": "_read_command",
+              "line": 178
+            },
+            {
+              "function": "read_u16",
+              "line": 195
+            },
+            {
+              "function": "show",
+              "line": 255
+            }
+          ],
+          "requested_length": 6,
+          "parent_sequence": 17,
+          "hex": "00 30 20 00 00 00",
+          "actual_return_length": 6
+        },
+        {
+          "sequence": 19,
+          "kind": "serial.read",
+          "callers": [
+            {
+              "function": "_read_exact",
+              "line": 134
+            },
+            {
+              "function": "_exchange",
+              "line": 154
+            },
+            {
+              "function": "_read_command",
+              "line": 178
+            },
+            {
+              "function": "read_u16",
+              "line": 195
+            },
+            {
+              "function": "show",
+              "line": 255
+            }
+          ],
+          "requested_length": 6,
+          "actual_return_length": 6,
+          "hex": "00 30 20 00 00 a0"
+        },
+        {
+          "sequence": 20,
+          "kind": "Display._write",
+          "callers": [
+            {
+              "function": "_exchange",
+              "line": 153
+            },
+            {
+              "function": "_read_command",
+              "line": 178
+            },
+            {
+              "function": "read_u16",
+              "line": 195
+            },
+            {
+              "function": "show",
+              "line": 255
+            }
+          ],
+          "requested_length": 6,
+          "payload": false,
+          "hex": "00 30 20 01 00 00",
+          "return_value": null
+        },
+        {
+          "sequence": 21,
+          "kind": "serial.write",
+          "callers": [
+            {
+              "function": "_write",
+              "line": 145
+            },
+            {
+              "function": "_exchange",
+              "line": 153
+            },
+            {
+              "function": "_read_command",
+              "line": 178
+            },
+            {
+              "function": "read_u16",
+              "line": 195
+            },
+            {
+              "function": "show",
+              "line": 255
+            }
+          ],
+          "requested_length": 6,
+          "parent_sequence": 20,
+          "hex": "00 30 20 01 00 00",
+          "actual_return_length": 6
+        },
+        {
+          "sequence": 22,
+          "kind": "serial.read",
+          "callers": [
+            {
+              "function": "_read_exact",
+              "line": 134
+            },
+            {
+              "function": "_exchange",
+              "line": 154
+            },
+            {
+              "function": "_read_command",
+              "line": 178
+            },
+            {
+              "function": "read_u16",
+              "line": 195
+            },
+            {
+              "function": "show",
+              "line": 255
+            }
+          ],
+          "requested_length": 6,
+          "actual_return_length": 6,
+          "hex": "00 30 20 01 00 50"
+        }
+      ]
+    },
+    {
+      "pattern": "moving",
+      "index": 1,
+      "events": [
+        {
+          "sequence": 1,
+          "kind": "Display._write",
+          "callers": [
+            {
+              "function": "_exchange",
+              "line": 153
+            },
+            {
+              "function": "_read_command",
+              "line": 178
+            },
+            {
+              "function": "read_u16",
+              "line": 195
+            },
+            {
+              "function": "keep_alive",
+              "line": 186
+            },
+            {
+              "function": "show",
+              "line": 245
+            }
+          ],
+          "requested_length": 6,
+          "payload": false,
+          "hex": "00 30 20 00 00 00",
+          "return_value": null
+        },
+        {
+          "sequence": 2,
+          "kind": "serial.write",
+          "callers": [
+            {
+              "function": "_write",
+              "line": 145
+            },
+            {
+              "function": "_exchange",
+              "line": 153
+            },
+            {
+              "function": "_read_command",
+              "line": 178
+            },
+            {
+              "function": "read_u16",
+              "line": 195
+            },
+            {
+              "function": "keep_alive",
+              "line": 186
+            },
+            {
+              "function": "show",
+              "line": 245
+            }
+          ],
+          "requested_length": 6,
+          "parent_sequence": 1,
+          "hex": "00 30 20 00 00 00",
+          "actual_return_length": 6
+        },
+        {
+          "sequence": 3,
+          "kind": "serial.read",
+          "callers": [
+            {
+              "function": "_read_exact",
+              "line": 134
+            },
+            {
+              "function": "_exchange",
+              "line": 154
+            },
+            {
+              "function": "_read_command",
+              "line": 178
+            },
+            {
+              "function": "read_u16",
+              "line": 195
+            },
+            {
+              "function": "keep_alive",
+              "line": 186
+            },
+            {
+              "function": "show",
+              "line": 245
+            }
+          ],
+          "requested_length": 6,
+          "actual_return_length": 6,
+          "hex": "00 30 20 00 00 a0"
+        },
+        {
+          "sequence": 4,
+          "kind": "Display._write",
+          "callers": [
+            {
+              "function": "_exchange",
+              "line": 153
+            },
+            {
+              "function": "_read_command",
+              "line": 178
+            },
+            {
+              "function": "read_u16",
+              "line": 195
+            },
+            {
+              "function": "keep_alive",
+              "line": 186
+            },
+            {
+              "function": "show",
+              "line": 245
+            }
+          ],
+          "requested_length": 6,
+          "payload": false,
+          "hex": "00 30 20 01 00 00",
+          "return_value": null
+        },
+        {
+          "sequence": 5,
+          "kind": "serial.write",
+          "callers": [
+            {
+              "function": "_write",
+              "line": 145
+            },
+            {
+              "function": "_exchange",
+              "line": 153
+            },
+            {
+              "function": "_read_command",
+              "line": 178
+            },
+            {
+              "function": "read_u16",
+              "line": 195
+            },
+            {
+              "function": "keep_alive",
+              "line": 186
+            },
+            {
+              "function": "show",
+              "line": 245
+            }
+          ],
+          "requested_length": 6,
+          "parent_sequence": 4,
+          "hex": "00 30 20 01 00 00",
+          "actual_return_length": 6
+        },
+        {
+          "sequence": 6,
+          "kind": "serial.read",
+          "callers": [
+            {
+              "function": "_read_exact",
+              "line": 134
+            },
+            {
+              "function": "_exchange",
+              "line": 154
+            },
+            {
+              "function": "_read_command",
+              "line": 178
+            },
+            {
+              "function": "read_u16",
+              "line": 195
+            },
+            {
+              "function": "keep_alive",
+              "line": 186
+            },
+            {
+              "function": "show",
+              "line": 245
+            }
+          ],
+          "requested_length": 6,
+          "actual_return_length": 6,
+          "hex": "00 30 20 01 00 50"
+        },
+        {
+          "sequence": 7,
+          "kind": "Display._write",
+          "callers": [
+            {
+              "function": "show",
+              "line": 246
+            }
+          ],
+          "requested_length": 6,
+          "payload": false,
+          "hex": "02 00 00 00 00 00",
+          "return_value": null
+        },
+        {
+          "sequence": 8,
+          "kind": "serial.write",
+          "callers": [
+            {
+              "function": "_write",
+              "line": 145
+            },
+            {
+              "function": "show",
+              "line": 246
+            }
+          ],
+          "requested_length": 6,
+          "parent_sequence": 7,
+          "hex": "02 00 00 00 00 00",
+          "actual_return_length": 6
+        },
+        {
+          "sequence": 9,
+          "kind": "Display._write",
+          "callers": [
+            {
+              "function": "show",
+              "line": 247
+            }
+          ],
+          "requested_length": 6,
+          "payload": false,
+          "hex": "02 01 00 a0 00 50",
+          "return_value": null
+        },
+        {
+          "sequence": 10,
+          "kind": "serial.write",
+          "callers": [
+            {
+              "function": "_write",
+              "line": 145
+            },
+            {
+              "function": "show",
+              "line": 247
+            }
+          ],
+          "requested_length": 6,
+          "parent_sequence": 9,
+          "hex": "02 01 00 a0 00 50",
+          "actual_return_length": 6
+        },
+        {
+          "sequence": 11,
+          "kind": "Display._write",
+          "callers": [
+            {
+              "function": "show",
+              "line": 248
+            }
+          ],
+          "requested_length": 6,
+          "payload": false,
+          "hex": "02 03 07 00 00 00",
+          "return_value": null
+        },
+        {
+          "sequence": 12,
+          "kind": "serial.write",
+          "callers": [
+            {
+              "function": "_write",
+              "line": 145
+            },
+            {
+              "function": "show",
+              "line": 248
+            }
+          ],
+          "requested_length": 6,
+          "parent_sequence": 11,
+          "hex": "02 03 07 00 00 00",
+          "actual_return_length": 6
+        },
+        {
+          "sequence": 13,
+          "kind": "serial.read",
+          "callers": [
+            {
+              "function": "_read_exact",
+              "line": 134
+            },
+            {
+              "function": "show",
+              "line": 249
+            }
+          ],
+          "requested_length": 2,
+          "actual_return_length": 2,
+          "hex": "02 03"
+        },
+        {
+          "sequence": 14,
+          "kind": "serial.read",
+          "callers": [
+            {
+              "function": "show",
+              "line": 250
+            }
+          ],
+          "requested_length": 4,
+          "actual_return_length": 4,
+          "hex": "07 00 00 00"
+        },
+        {
+          "sequence": 15,
+          "kind": "Display._write",
+          "callers": [
+            {
+              "function": "show",
+              "line": 253
+            }
+          ],
+          "requested_length": 39000,
+          "payload": true,
+          "sha256": "efb017e39160842cb15b9fb81e61d85253a365edb08b5f7feb6f8114b0e55d41",
+          "return_value": null
+        },
+        {
+          "sequence": 16,
+          "kind": "serial.write",
+          "callers": [
+            {
+              "function": "_write",
+              "line": 145
+            },
+            {
+              "function": "show",
+              "line": 253
+            }
+          ],
+          "requested_length": 39000,
+          "parent_sequence": 15,
+          "sha256": "efb017e39160842cb15b9fb81e61d85253a365edb08b5f7feb6f8114b0e55d41",
+          "actual_return_length": 39000
+        },
+        {
+          "sequence": 17,
+          "kind": "Display._write",
+          "callers": [
+            {
+              "function": "_exchange",
+              "line": 153
+            },
+            {
+              "function": "_read_command",
+              "line": 178
+            },
+            {
+              "function": "read_u16",
+              "line": 195
+            },
+            {
+              "function": "show",
+              "line": 255
+            }
+          ],
+          "requested_length": 6,
+          "payload": false,
+          "hex": "00 30 20 00 00 00",
+          "return_value": null
+        },
+        {
+          "sequence": 18,
+          "kind": "serial.write",
+          "callers": [
+            {
+              "function": "_write",
+              "line": 145
+            },
+            {
+              "function": "_exchange",
+              "line": 153
+            },
+            {
+              "function": "_read_command",
+              "line": 178
+            },
+            {
+              "function": "read_u16",
+              "line": 195
+            },
+            {
+              "function": "show",
+              "line": 255
+            }
+          ],
+          "requested_length": 6,
+          "parent_sequence": 17,
+          "hex": "00 30 20 00 00 00",
+          "actual_return_length": 6
+        },
+        {
+          "sequence": 19,
+          "kind": "serial.read",
+          "callers": [
+            {
+              "function": "_read_exact",
+              "line": 134
+            },
+            {
+              "function": "_exchange",
+              "line": 154
+            },
+            {
+              "function": "_read_command",
+              "line": 178
+            },
+            {
+              "function": "read_u16",
+              "line": 195
+            },
+            {
+              "function": "show",
+              "line": 255
+            }
+          ],
+          "requested_length": 6,
+          "actual_return_length": 6,
+          "hex": "00 30 20 00 00 a0"
+        },
+        {
+          "sequence": 20,
+          "kind": "Display._write",
+          "callers": [
+            {
+              "function": "_exchange",
+              "line": 153
+            },
+            {
+              "function": "_read_command",
+              "line": 178
+            },
+            {
+              "function": "read_u16",
+              "line": 195
+            },
+            {
+              "function": "show",
+              "line": 255
+            }
+          ],
+          "requested_length": 6,
+          "payload": false,
+          "hex": "00 30 20 01 00 00",
+          "return_value": null
+        },
+        {
+          "sequence": 21,
+          "kind": "serial.write",
+          "callers": [
+            {
+              "function": "_write",
+              "line": 145
+            },
+            {
+              "function": "_exchange",
+              "line": 153
+            },
+            {
+              "function": "_read_command",
+              "line": 178
+            },
+            {
+              "function": "read_u16",
+              "line": 195
+            },
+            {
+              "function": "show",
+              "line": 255
+            }
+          ],
+          "requested_length": 6,
+          "parent_sequence": 20,
+          "hex": "00 30 20 01 00 00",
+          "actual_return_length": 6
+        },
+        {
+          "sequence": 22,
+          "kind": "serial.read",
+          "callers": [
+            {
+              "function": "_read_exact",
+              "line": 134
+            },
+            {
+              "function": "_exchange",
+              "line": 154
+            },
+            {
+              "function": "_read_command",
+              "line": 178
+            },
+            {
+              "function": "read_u16",
+              "line": 195
+            },
+            {
+              "function": "show",
+              "line": 255
+            }
+          ],
+          "requested_length": 6,
+          "actual_return_length": 6,
+          "hex": "00 30 20 01 00 50"
+        }
+      ]
+    }
+  ],
+  "scope": "Hooks installed after connect; only Display.show calls; no GUI/ADC/extra register calls",
+  "device": {
+    "protocol": "01",
+    "width": 160,
+    "height": 80
+  }
+}
